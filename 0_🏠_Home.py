@@ -438,8 +438,8 @@ if st.button("Atualizar Status"):
     "prazo":"28",
      "ajuste_competencia": -1
 
-            }
-        }
+    }
+    }
         
         for plano in planos_unicos:
             caminho_da_pasta = caminhos.get(plano, "")
