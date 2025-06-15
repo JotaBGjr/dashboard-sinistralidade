@@ -91,7 +91,6 @@ if st.button("Atualizar Status"):
         df = pd.read_csv("dashboard/csv/home.csv")
 
     blocos_html_lista = []
-    df = gerar_relatorio_pastas(caminhos)
     
     st.success("Dados atualizados!")
 
@@ -439,39 +438,39 @@ if st.button("Atualizar Status"):
      "ajuste_competencia": -1
 
     }
-    }
+}
         
-        for plano in planos_unicos:
-            caminho_da_pasta = caminhos.get(plano, "")
-            ultima_atualizacao = ultima_data_arquivo(caminho_da_pasta)
-            prazo = metadados_etapas.get(plano, {}).get("prazo", "")
-            ajuste = metadados_etapas.get(plano, {}).get("ajuste_competencia", -1)  # padrão -1
-            competencia = hoje + relativedelta(months=ajuste)  
-            competencia_formatada = competencia.strftime("%B/%Y").capitalize()
+    for plano in planos_unicos:
+        caminho_da_pasta = caminhos.get(plano, "")
+        ultima_atualizacao = ultima_data_arquivo(caminho_da_pasta)
+        prazo = metadados_etapas.get(plano, {}).get("prazo", "")
+        ajuste = metadados_etapas.get(plano, {}).get("ajuste_competencia", -1)  # padrão -1
+        competencia = hoje + relativedelta(months=ajuste)  
+        competencia_formatada = competencia.strftime("%B/%Y").capitalize()
 
-            dados_etapa = df[df["Plano"] == plano]
+        dados_etapa = df[df["Plano"] == plano]
 
-            total_pastas = dados_etapa["Total de Pastas"].sum()
-            pastas_com_arquivos = dados_etapa["Pastas com Arquivo"].sum()
-            progresso = pastas_com_arquivos / total_pastas if total_pastas > 0 else 0
-            cor = cor_barra(progresso)
+        total_pastas = dados_etapa["Total de Pastas"].sum()
+        pastas_com_arquivos = dados_etapa["Pastas com Arquivo"].sum()
+        progresso = pastas_com_arquivos / total_pastas if total_pastas > 0 else 0
+        cor = cor_barra(progresso)
 
-            bloco_html = f"""
-            <div style='margin: 16px 0; padding: 12px; border: 2px solid #ddd; border-radius: 8px;'>
-                <div style='display: flex; align-items: center; gap: 20px;'>
-                    <div style='flex: 1;'>{estilizar_plano(plano)}</div>
-                    <div style='flex: 5;'>
-                        <div style='font-size:12px; color:gray'> Competência:{competencia_formatada}  | Prazo:{prazo}  |  Últ. Atualização: {ultima_atualizacao}</div>
-                        <div style='background-color:#e0e0e0;border-radius:10px;width:100%;height:20px'>
-                            <div style='width:{int(progresso*100)}%;background-color:{cor};height:100%;border-radius:10px;text-align:center;color:white;font-size:12px;'>
-                                {int(progresso*100)}%
-                            </div>
+        bloco_html = f"""
+        <div style='margin: 16px 0; padding: 12px; border: 2px solid #ddd; border-radius: 8px;'>
+            <div style='display: flex; align-items: center; gap: 20px;'>
+                <div style='flex: 1;'>{estilizar_plano(plano)}</div>
+                <div style='flex: 5;'>
+                    <div style='font-size:12px; color:gray'> Competência:{competencia_formatada}  | Prazo:{prazo}  |  Últ. Atualização: {ultima_atualizacao}</div>
+                    <div style='background-color:#e0e0e0;border-radius:10px;width:100%;height:20px'>
+                        <div style='width:{int(progresso*100)}%;background-color:{cor};height:100%;border-radius:10px;text-align:center;color:white;font-size:12px;'>
+                            {int(progresso*100)}%
                         </div>
                     </div>
                 </div>
             </div>
-            """
-            blocos_html_lista.append(bloco_html)
+        </div>
+        """
+        blocos_html_lista.append(bloco_html)
 
         #st.markdown("### Etapas em Destaque")
 
