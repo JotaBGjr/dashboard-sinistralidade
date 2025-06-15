@@ -7,7 +7,11 @@ from dateutil.relativedelta import relativedelta
 import locale
 
 
-locale.setlocale(locale.LC_TIME, 'Portuguese_Brazil.1252')
+try:
+    locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+except locale.Error:
+    # fallback para o default do sistema
+    locale.setlocale(locale.LC_TIME, '')
 st.set_page_config(layout="wide", page_title="Dashboard de relatório")
 
 
