@@ -7,8 +7,6 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import locale
 
-
-
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")  # você pode ajustar esse caminho conforme desejar
 
 
@@ -16,18 +14,6 @@ if LOCAL_ENV:
     df = gerar_relatorio_pastas(caminhos)
 else:
     df = pd.read_csv("dashboard/csv/home.csv")
-
-
-
-
-
-
-
-
-
-
-
-
 
 try:
     locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
