@@ -1,7 +1,9 @@
 import os
-import pandas as pd 
+import pandas as pd
+from datetime import datetime
 
 def gerar_relatorio_pastas(caminhos):
+    
     dados = [] # Lista para guardar cada item analisado
 
     for etapa, caminho in caminhos.items():
@@ -28,6 +30,7 @@ def gerar_relatorio_pastas(caminhos):
         else:
             dados.append([etapa, "Caminho não encontrado", "", "", "", ""])
     df = pd.DataFrame(dados, columns=["Etapa", "Total de Pastas", "Pastas com Arquivo", "Diferença", "Pastas Vazias", "Pastas c/ Arquivos"])
+ 
     return df
 
 
@@ -269,3 +272,7 @@ caminhos_4 = {
     #"GNDI - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRALIDADE",
     #"GNDI - Bi Zetta": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\RELATORIO",
 }
+
+
+
+
