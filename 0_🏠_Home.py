@@ -13,9 +13,9 @@ LOCAL_ENV = os.path.exists("C:/JORGE_V1")  # você pode ajustar esse caminho con
 
 
 if LOCAL_ENV:
-        df = gerar_relatorio_pastas(caminhos)
-    else:
-        df = pd.read_csv("dashboard/csv/home.csv")
+    df = gerar_relatorio_pastas(caminhos)
+else:
+    df = pd.read_csv("dashboard/csv/home.csv")
 try:
     locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 except locale.Error:
