@@ -1,480 +1,223 @@
-import streamlit as st 
-from verifica_pastas import gerar_relatorio_pastas, caminhos_4
-import os
+import streamlit as st
 import pandas as pd
+import os
 from datetime import datetime
+from functions.verifica_pastas import gerar_relatorio_pastas, caminhos_4
 from dateutil.relativedelta import relativedelta
-import locale
+
+st.set_page_config(page_title="Painel Geral", layout="wide")
+st.title("📊 Painel Geral dos Relatórios de Sinistralidade")
+
+LOCAL_ENV = os.path.exists("C:/JORGE_V1")
+
+prazos_etapas = {
+    "Planilha de Reavaliação":{"prazo": "Dia 15"},
+
+    "Amil - Bi Zetta":{"prazo": "Dia 15"},
+    "Amil - Envio Relatórios":{"prazo": "Dia 15"},
+    "Amil - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
 
-try:
-    locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
-except locale.Error:
-    # fallback para o default do sistema
-    locale.setlocale(locale.LC_TIME, '')
-st.set_page_config(layout="wide", page_title="Quiver - Anexar Relatório")
+    "Bradesco - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
+    "Bradesco - Base Aberta de Sinistro":{"prazo": "Dia 15"},
+    "Bradesco - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "Bradesco - Bi Zetta":{"prazo": "Dia 15"},
+    "Bradesco - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Bradesco - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
 
+    "Seguros Unimed - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
+    "Seguros Unimed - Base Aberta de Sinistro":{"prazo": "Dia 15"},
+    "Seguros Unimed - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "Seguros Unimed - Bi Zetta":{"prazo": "Dia 15"}, 
+    "Seguros Unimed - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
-hoje = datetime.now()
-time = hoje.strftime("%m/%Y")
+    "Bradesco (manual) - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "Bradesco (manual) - Produção do Relatório":{"prazo": "Dia 15"},
+    "Bradesco (Manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
-st.title("Monitoramento de Progressão : Quiver")
-st.markdown("Este painel mostra o status de andamento do anexamento mês " + time)
-st.markdown("Selecione um painel para visualizar:")
+    "SulAmérica - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
+    "SulAmérica - Base Aberta de Sinistro":{"prazo": "Dia 15"},
+    "SulAmérica - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "SulAmérica - Bi Zetta":{"prazo": "Dia 15"},
+    "SulAmérica - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "SulAmérica - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
-botao1,botao2,botao3,botao4,botao5 = st.columns(5)
+    
+    "Unimed Nacional - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
+    "Unimed Nacional - Base Aberta de Sinistro":{"prazo": "Dia 15"},
+    "Unimed Nacional - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "Unimed Nacional - Bi Zetta":{"prazo": "Dia 15"},
+    "Unimed Nacional - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
+    
+    "Porto Seguro - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
+    "Porto Seguro - Base Aberta de Sinistro":{"prazo": "Dia 15"},
+    "Porto Seguro - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "Porto Seguro - Bi Zetta":{"prazo": "Dia 15"},
+    "Porto Seguro - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    
+    "Omint - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
+    "Omint - Base Aberta de Sinistro":{"prazo": "Dia 15"},
+    "Omint - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "Omint - Bi Zetta":{"prazo": "Dia 15"},
+    "Omint - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Omint - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
-
-def ultima_data_arquivo(pasta):
-    try:
-        arquivos = [os.path.join(pasta, f) for f in os.listdir(pasta)]
-        arquivos = [f for f in arquivos if os.path.isfile(f)]
-        if not arquivos:
-            return "Sem arquivos"
-        ultima_data = max(os.path.getmtime(f) for f in arquivos)
-        return datetime.fromtimestamp(ultima_data).strftime("%d/%m/%Y")
-    except Exception as e:
-        return "Erro"
-
-# Função para estilizar o nome do plano
-def estilizar_plano(plano):
-    estilo = {
-        "Planilha": "background-color:#00FF00;color:#DCDCDC;font-weight:bold;padding:4px;border-radius:5px",
-        "Bradesco": "background-color:#8B0000;color:#D3D3D3;font-weight:bold;padding:4px;border-radius:5px",
-        "Amil": "background-color:#1E90FF;color:#FFFFFF;font-weight:bold;padding:4px;border-radius:5px",
-        "Hapvida": "background-color:#FFA500;color:#0000CD;font-weight:bold;padding:4px;border-radius:5px",
-        "Omint": "background-color:#00008B;color:#DCDCDC;font-weight:bold;padding:4px;border-radius:5px",
-        "Plena Saúde": "background-color:#B0C4DE;color:#800080;font-weight:bold;padding:4px;border-radius:5px",
-        "Porto Seguro": "background-color:#F5FFFA;color:#1E90FF;font-weight:bold;padding:4px;border-radius:5px",
-        "SulAmérica -": "background-color:#FF4500;color:#000080;font-weight:bold;padding:4px;border-radius:5px",
-        "Seguros Unimed": "background-color:#B0C4DE;color:#000080;font-weight:bold;padding:4px;border-radius:5px",
-        "Unimed Nacional": "background-color:#228B22;color:#FFFFFF;font-weight:bold;padding:4px;border-radius:5px",
-    }
-    for chave in estilo:
-        if chave.lower() in plano.lower():
-            return f"<div style='{estilo[chave]}'>{plano}</div>"
-    return f"<div style='font-weight:bold'>{plano}</div>"
-
-# Função para cor da barra
-def cor_barra(progresso):
-    if progresso >= 1:
-        return "#00C851"  # verde
-    elif progresso >= 0.9:
-        return "#4285F4"  # azul
-    elif progresso >= 0.5:
-        return "#FFA500"  # laranja
-    else:
-        return "#FF4444"  # vermelho
-
-if st.button("Atualizar Status"):
-    blocos_html_lista = []
-    df = gerar_relatorio_pastas(caminhos_4)
+    "Omint (manual) - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "Omint (manual) - Produção do Relatório":{"prazo": "Dia 15"},
+    "Omint (manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
    
-    st.success("Dados atualizados!")
+    "Hapvida - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
+    "Hapvida - Base Aberta de Sinistro":{"prazo": "Dia 15"},
+    "Hapvida - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "Hapvida - Bi Zetta":{"prazo": "Dia 15"},
+    "Hapvida - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Hapvida - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    
 
-    # Conversões seguras
+    "Plena Saúde - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
+    "Plena Saúde - Base Aberta de Sinistro":{"prazo": "Dia 15"},
+    "Plena Saúde - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
+    "Plena Saúde - Bi Zetta":{"prazo": "Dia 15"},
+    "Plena Saúde - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    
+}
+
+operadoras_competencia = {
+    "Amil": -2,
+    "Bradesco": -1,
+    "Seguros Unimed": -1,
+    "SulAmérica": -1,
+    "Unimed Nacional": -1,
+    "Porto Seguro": -1,
+    "Omint": -1,
+    "Hapvida": -2,
+    "Plena Saúde": -2,
+}
+
+def identificar_competencia(etapa_nome):
+    etapa_nome_lower = etapa_nome.lower()
+    for operadora, ajuste_meses in operadoras_competencia.items():
+        if operadora.lower() in etapa_nome_lower:
+            competencia = datetime.today() + relativedelta(months=ajuste_meses)
+            return competencia.strftime("%m/%Y")
+    return "N/A"  # caso não encontre operadora
+
+
+
+
+
+
+def carregar_df():
+    return gerar_relatorio_pastas(caminhos_4) if LOCAL_ENV else pd.read_csv("dashboard/csv/anexar_quiver.csv")
+
+def preparar_df(df):
     df["Total de Pastas"] = pd.to_numeric(df["Total de Pastas"], errors="coerce")
     df["Pastas com Arquivo"] = pd.to_numeric(df["Pastas com Arquivo"], errors="coerce")
     df["Diferença"] = pd.to_numeric(df["Diferença"], errors="coerce")
-
-    # Métricas resumidas
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Total de Arquivos", int(df["Total de Pastas"].sum(skipna=True)))
-    col2.metric("Arquivos Recebidos", int(df["Pastas com Arquivo"].sum(skipna=True)))
-    col3.metric("Arquivos Pendentes", int(df["Diferença"].sum(skipna=True)))
-
-    # Progresso da extração
-    st.subheader("Extração de Arquivos")
-
-    total_pastas = len(df)
-    pastas_com_arquivos = df[df["Pastas com Arquivo"] > 0].shape[0]
-
-    progresso = pastas_com_arquivos / total_pastas if total_pastas > 0 else 0
-
-    st.progress(progresso)
-    st.metric("Progresso", f"{int(progresso * 100)}%")
-
-    st.subheader("Progresso por Atividade")
-
-    planos_unicos = df["Plano"].unique()
-
-    metadados_etapas = {
-        "Planilha de Reavaliação": {
-        "prazo":"03",
-        "ajuste_competencia": +1,
-        "Ult. Atualização":"hoje"
-
-        },
-
-        "Amil - Bi Zetta": {
-        "prazo":"10",
-        "ajuste_competencia": -1
-
-        },
-        "Amil - Envio Relatórios": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "Amil - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"16",
-        "ajuste_competencia": -1
-
-        },
-
-
-        "Bradesco - Arquivo de Cadastro/Faturamento": {
-        "prazo":"05",
-        "ajuste_competencia": -1
-
-        },
-        "Bradesco - Base Aberta de Sinistro": {
-        "prazo":"05",
-        "ajuste_competencia": -1
-
-        },
-        "Bradesco - Relatório Gerencial de Sinistralidade": {
-        "prazo":"05",
-        "ajuste_competencia": -1
-
-        },
-        "Bradesco - Bi Zetta": {
-        "prazo":"10",
-        "ajuste_competencia": -1
-
-        },
-        "Bradesco - Envio Relatório de Sinistralidade": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "Bradesco - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"16",
-        "ajuste_competencia": -1
-
-        },
-
-
-        "Seguros Unimed - Arquivo de Cadastro/Faturamento": {
-        "prazo":"05",
-        "ajuste_competencia": -1
-
-        },
-        "Seguros Unimed - Base Aberta de Sinistro": {
-        "prazo":"05",
-        "ajuste_competencia": -1
-
-        },
-        "Seguros Unimed - Relatório Gerencial de Sinistralidade": {
-        "prazo":"05",
-        "ajuste_competencia": -1
-
-        },
-        "Seguros Unimed - Bi Zetta": {
-        "prazo":"10",
-        "ajuste_competencia": -1
-
-        }, 
-        "Seguros Unimed - Envio Relatório de Sinistralidade": {
-        "prazo":"16",
-        "ajuste_competencia": -1
-
-        },
-        "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"17",
-        "ajuste_competencia": -1
-
-        },
-
-        "Bradesco (manual) - Relatório Gerencial de Sinistralidade": {
-        "prazo":"05",
-        "ajuste_competencia": -1
-
-        },
-        "Bradesco (manual) - Produção do Relatório": {
-        "prazo":"08",
-        "ajuste_competencia": -1
-
-        },
-        "Bradesco (Manual) - Envio Relatório de Sinistralidade": {
-        "prazo":"10",
-        "ajuste_competencia": -1
-
-        },
-        "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"11",
-        "ajuste_competencia": -1
-
-        },
-
-        "SulAmérica - Arquivo de Cadastro/Faturamento": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "SulAmérica - Base Aberta de Sinistro": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "SulAmérica - Relatório Gerencial de Sinistralidade": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "SulAmérica - Bi Zetta": {
-        "prazo":"18",
-        "ajuste_competencia": -1
-
-        },
-        "SulAmérica - Envio Relatório de Sinistralidade": {
-        "prazo":"27",
-        "ajuste_competencia": -1
-
-        },
-        "SulAmérica - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"28",
-        "ajuste_competencia": -1
-
-        },
-
-            
-        "Unimed Nacional - Arquivo de Cadastro/Faturamento": {
-        "prazo":"13",
-        "ajuste_competencia": -1
-
-        },
-        "Unimed Nacional - Base Aberta de Sinistro": {
-        "prazo":"13",
-        "ajuste_competencia": -1
-
-        },
-        "Unimed Nacional - Relatório Gerencial de Sinistralidade": {
-        "prazo":"13",
-        "ajuste_competencia": -1
-
-        },
-        "Unimed Nacional - Bi Zetta": {
-        "prazo":"18",
-        "ajuste_competencia": -1
-
-        },
-        "Unimed Nacional - Envio Relatório de Sinistralidade": {
-        "prazo":"25",
-        "ajuste_competencia": -1
-
-        },
-        "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"26",
-        "ajuste_competencia": -1
-
-        },
-
-            
-        "Porto Seguro - Arquivo de Cadastro/Faturamento": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "Porto Seguro - Base Aberta de Sinistro": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "Porto Seguro - Relatório Gerencial de Sinistralidade": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "Porto Seguro - Bi Zetta": {
-        "prazo":"20",
-        "ajuste_competencia": -1
-
-        },
-        "Porto Seguro - Envio Relatório de Sinistralidade": {
-        "prazo":"27",
-        "ajuste_competencia": -1
-
-        },
-        "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"28",
-        "ajuste_competencia": -1
-
-        },
-            
-        "Omint - Arquivo de Cadastro/Faturamento": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "Omint - Base Aberta de Sinistro": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "Omint - Relatório Gerencial de Sinistralidade": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "Omint - Bi Zetta": {
-        "prazo":"20",
-        "ajuste_competencia": -1
-
-        },
-        "Omint - Envio Relatório de Sinistralidade": {
-        "prazo":"27",
-        "ajuste_competencia": -1
-
-        },
-        "Omint - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"28",
-        "ajuste_competencia": -1
-
-        },
-
-        "Omint (manual) - Relatório Gerencial de Sinistralidade": {
-        "prazo":"15",
-        "ajuste_competencia": -1
-
-        },
-        "Omint (manual) - Produção do Relatório": {
-        "prazo":"18",
-        "ajuste_competencia": -1
-
-        },
-        "Omint (manual) - Envio Relatório de Sinistralidade": {
-        "prazo":"20",
-        "ajuste_competencia": -1
-
-        },
-        "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"21",
-        "ajuste_competencia": -1
-
-        },
-        
-        "Hapvida - Arquivo de Cadastro/Faturamento": {
-        "prazo":"20",
-        "ajuste_competencia": -2
-
-        },
-        "Hapvida - Base Aberta de Sinistro": {
-        "prazo":"20",
-        "ajuste_competencia": -2
-
-        },
-        "Hapvida - Relatório Gerencial de Sinistralidade": {
-        "prazo":"20",
-        "ajuste_competencia": -2
-
-        },
-        "Hapvida - Bi Zetta": {
-        "prazo":"25",
-        "ajuste_competencia": -2
-
-        },
-        "Hapvida - Envio Relatório de Sinistralidade": {
-        "prazo":"28",
-        "ajuste_competencia": -2
-
-        },
-        "Hapvida - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"29",
-        "ajuste_competencia": -2
-
-        },
-            
-
-        "Plena Saúde - Arquivo de Cadastro/Faturamento": {
-        "prazo":"20",
-        "ajuste_competencia": -1
-
-        },
-        "Plena Saúde - Base Aberta de Sinistro": {
-        "prazo":"20",
-        "ajuste_competencia": -1
-
-        },
-        "Plena Saúde - Relatório Gerencial de Sinistralidade": {
-        "prazo":"20",
-        "ajuste_competencia": -1
-
-        },
-        "Plena Saúde - Bi Zetta": {
-        "prazo":"25",
-        "ajuste_competencia": -1
-
-        },
-        "Plena Saúde - Envio Relatório de Sinistralidade": {
-        "prazo":"28",
-        "ajuste_competencia": -1
-
-        },
-        "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade": {
-        "prazo":"28",
-        "ajuste_competencia": -1
-
-        }
-    }
-    
-    for plano in planos_unicos:
-        caminho_da_pasta = caminhos_4.get(plano, "")
-        ultima_atualizacao = ultima_data_arquivo(caminho_da_pasta)
-        prazo = metadados_etapas.get(plano, {}).get("prazo", "")
-        ajuste = metadados_etapas.get(plano, {}).get("ajuste_competencia", -1)  # padrão -1
-        competencia = hoje + relativedelta(months=ajuste)  
-        competencia_formatada = competencia.strftime("%B/%Y").capitalize()
-
-        dados_etapa = df[df["Plano"] == plano]
-
-        total_pastas = dados_etapa["Total de Pastas"].sum()
-        pastas_com_arquivos = dados_etapa["Pastas com Arquivo"].sum()
-        progresso = pastas_com_arquivos / total_pastas if total_pastas > 0 else 0
-        cor = cor_barra(progresso)
-
-        bloco_html = f"""
-        <div style='margin: 16px 0; padding: 12px; border: 2px solid #ddd; border-radius: 8px;'>
-            <div style='display: flex; align-items: center; gap: 20px;'>
-                <div style='flex: 1;'>{estilizar_plano(plano)}</div>
-                <div style='flex: 5;'>
-                    <div style='font-size:12px; color:gray'> Competência:{competencia_formatada}  | Prazo:{prazo}  |  Últ. Atualização: {ultima_atualizacao}</div>
-                    <div style='background-color:#e0e0e0;border-radius:10px;width:100%;height:20px'>
-                        <div style='width:{int(progresso*100)}%;background-color:{cor};height:100%;border-radius:10px;text-align:center;color:white;font-size:12px;'>
-                            {int(progresso*100)}%
-                        </div>
-                    </div>
-                </div>
+    return df
+
+def ultima_data_arquivo(pasta):
+    if not LOCAL_ENV or not os.path.exists(pasta):
+        return "Indisponível"
+    try:
+        arquivos = [os.path.join(pasta, f) for f in os.listdir(pasta)]
+        datas = [os.path.getmtime(f) for f in arquivos if os.path.isfile(f)]
+        if datas:
+            ultima_data = max(datas)
+            return datetime.fromtimestamp(ultima_data).strftime('%d/%m/%Y')
+        return "Sem arquivos"
+    except Exception:
+        return "Erro"
+
+def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor):
+    return f"""
+        <div style='border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
+                    background-color: #f9f9f9; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
+            <h4 style='margin: 0 0 12px;'>{etapa}</h4>
+            <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
+            <div style='background-color: #eee; border-radius: 8px; overflow: hidden; height: 22px;'>
+                <div style='width: {progresso}%; background-color: {cor}; height: 100%; text-align: center;
+                            color: white; font-weight: bold;'>{progresso}%</div>
             </div>
         </div>
-        """
-        blocos_html_lista.append(bloco_html)
+    """
 
-    #st.markdown("### Etapas em Destaque")
+# Carregar dados
+df = carregar_df()
+df = preparar_df(df)
 
-    st.components.v1.html("<div style='max-height: 720px; overflow-y: auto; padding-right: 10px;'>" +
+# Atualização manual
+if st.button("Atualizar Status"):
+    df = carregar_df()
+    df = preparar_df(df)
+    st.success("Dados atualizados!")
+
+# Dividir colunas para visualização
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("Total de Etapas", value=df["Etapa"].nunique())
+
+with col2:
+    etapas_concluidas = df[df["Diferença"] == 0]["Etapa"].nunique()
+    st.metric("Etapas Concluídas", value=etapas_concluidas)
+
+with col3:
+    progresso_total = int((etapas_concluidas / df["Etapa"].nunique()) * 100)
+    st.metric("Progresso Geral", value=f"{progresso_total}%")
+    st.progress(progresso_total / 100)
+
+# Exibir progresso por etapa
+st.markdown("### Progresso por Atividade")
+etapas_unicos = df["Etapa"].unique()
+
+blocos_html_lista = []
+
+for etapa in etapas_unicos:
+    df_etapa = df[df["Etapa"] == etapa]
+    total = df_etapa["Total de Pastas"].sum()
+    com_arquivo = df_etapa["Pastas com Arquivo"].sum()
+    progresso = int((com_arquivo / total) * 100) if total else 0
+
+    cor = "#4CAF50" if progresso == 100 else "#2196F3" if progresso >= 50 else "#FF9800"
+
+    prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
+    competencia = identificar_competencia(etapa)
+    competencia_formatada = competencia.replace("/", "-") if competencia != "N/A" else competencia
+
+    caminhos_4_pasta = [caminhos_4.get(etapa, "") for et in df_etapa["Etapa"]]
+    ultima_atualizacao = max([ultima_data_arquivo(pasta) for pasta in caminhos_4_pasta if pasta], default="N/A")
+
+    bloco_html = gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
+    blocos_html_lista.append(bloco_html)
+
+# Exibir todos os blocos de uma vez
+st.components.v1.html(
+    "<div style='max-height: 720px; overflow-y: auto; padding-right: 10px;'>" +
     "".join(blocos_html_lista) +
     "</div>",
-    height=740,
-    )
+    height=740
+)
 
+st.markdown("###  Resumo")
 
-    # Tabela principal
-    st.subheader("Status Geral")
-    st.dataframe(df, use_container_width=True)
+# Verifique as colunas disponíveis (apagar depois de verificar)
+#st.write("Colunas disponíveis:", df.columns.tolist())
 
-    # Pastas vazias | Arquivos pendentes
-    st.subheader("Arquivos Pendentes")
-    pastas_vazias = df[df["Pastas com Arquivo"] == 0]
-    df_pendentes = pastas_vazias.rename(columns={
-        "Plano": "Etapa",
-        "Total de Pastas": "Total de Arquivos",
-        "Pastas Vazias": "Arquivos Pendentes"
+# Use nomes corretos
+colunas_resumo = ["Etapa", "Total de Pastas", "Diferença", "Pastas com Arquivo", "Pastas Vazias"]
 
-    })
-    st.dataframe(df_pendentes[["Etapa", "Total de Arquivos", "Arquivos Pendentes"]], use_container_width=True)
+# Garantir que só usaremos colunas que existem
+colunas_existentes = [col for col in colunas_resumo if col in df.columns]
 
-else:
-    st.info("Clique no botão acima para gerar o relatório.")
+df_resumo = df[colunas_existentes].groupby("Etapa", as_index=False).sum()
+
+st.dataframe(df_resumo, use_container_width=True)

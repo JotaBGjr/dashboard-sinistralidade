@@ -206,3 +206,18 @@ st.components.v1.html(
     "</div>",
     height=740
 )
+
+st.markdown("###  Resumo")
+
+# Verifique as colunas disponíveis (apagar depois de verificar)
+#st.write("Colunas disponíveis:", df.columns.tolist())
+
+# Use nomes corretos
+colunas_resumo = ["Etapa", "Total de Pastas", "Diferença", "Pastas com Arquivo", "Pastas Vazias"]
+
+# Garantir que só usaremos colunas que existem
+colunas_existentes = [col for col in colunas_resumo if col in df.columns]
+
+df_resumo = df[colunas_existentes].groupby("Etapa", as_index=False).sum()
+
+st.dataframe(df_resumo, use_container_width=True)
