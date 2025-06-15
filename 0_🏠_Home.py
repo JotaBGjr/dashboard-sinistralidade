@@ -1,5 +1,4 @@
 import streamlit as st 
-from streamlit_extras.switch_page_button import switch_page
 from verifica_pastas import gerar_relatorio_pastas, caminhos
 import os
 import pandas as pd
@@ -7,15 +6,16 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import locale
 
-
 st.set_page_config(layout="wide", page_title="Dashboard de relatório")
-LOCAL_ENV = os.path.exists("C:/JORGE_V1")  # você pode ajustar esse caminho conforme desejar
 
-
+LOCAL_ENV = os.path.exists("C:/JORGE_V1")  # ajustar esse caminho conforme desejar
 if LOCAL_ENV:
     df = gerar_relatorio_pastas(caminhos)
 else:
     df = pd.read_csv("dashboard/csv/home.csv")
+
+
+
 try:
     locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 except locale.Error:
@@ -30,11 +30,6 @@ time = hoje.strftime("%m/%Y")
 
 st.title("Monitoramento de Progressão")
 st.markdown("Este painel mostra o status de andamento do Relatório de Sinistralidade mês " + time)
-st.markdown("Selecione um painel para visualizar:")
-
-
-
-
 
 
 def ultima_data_arquivo(pasta):

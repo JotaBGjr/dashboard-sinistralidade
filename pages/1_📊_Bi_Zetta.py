@@ -6,8 +6,8 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import locale
 
-
 st.set_page_config(layout="wide", page_title="Bi Zetta")
+
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")
 if LOCAL_ENV:
     df = gerar_relatorio_pastas(caminhos_2)
