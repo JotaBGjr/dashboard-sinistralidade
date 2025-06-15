@@ -4,7 +4,7 @@ import pandas as pd
 def gerar_relatorio_pastas(caminhos):
     dados = [] # Lista para guardar cada item analisado
 
-    for nome, caminho in caminhos.items():
+    for etapa, caminho in caminhos.items():
         if os.path.exists(caminho):
             subpastas = [os.path.join(caminho, d) for d in os.listdir(caminho) if os.path.isdir(os.path.join(caminho, d))]
 
@@ -24,10 +24,10 @@ def gerar_relatorio_pastas(caminhos):
             pastas_com_arquivos_str = " ,".join(pastas_com_arquivos) if pastas_com_arquivos else "Nenhuma"
             pastas_vazias_str = " ,".join(pasta_vazias) if pasta_vazias else "Nenhuma"
 
-            dados.append([nome, total_pastas, len(pastas_com_arquivos), diferenca, pastas_vazias_str, pastas_com_arquivos_str])
+            dados.append([etapa, total_pastas, len(pastas_com_arquivos), diferenca, pastas_vazias_str, pastas_com_arquivos_str])
         else:
-            dados.append([nome, "Caminho não encontrado", "", "", "", ""])
-    df = pd.DataFrame(dados, columns=["Plano", "Total de Pastas", "Pastas com Arquivo", "Diferença", "Pastas Vazias", "Pastas c/ Arquivos"])
+            dados.append([etapa, "Caminho não encontrado", "", "", "", ""])
+    df = pd.DataFrame(dados, columns=["Etapa", "Total de Pastas", "Pastas com Arquivo", "Diferença", "Pastas Vazias", "Pastas c/ Arquivos"])
     return df
 
 

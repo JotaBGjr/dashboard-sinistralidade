@@ -9,7 +9,7 @@ st.title("📊 Painel Geral dos Relatórios de Sinistralidade")
 
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")
 
-# Metadados com prazos e competência por plano
+# Metadados com prazos e competência por etapa
 metadados_etapas = {
     "Bradesco": {"prazo": 10, "competencia": "05/2025"},
     "Bradesco - Arquivo de Cadastro/Faturamento": {"prazo": 15, "competencia": "05/2025"},
@@ -45,11 +45,11 @@ def ultima_data_arquivo(pasta):
     except Exception:
         return "Erro"
 
-def gerar_bloco_html(plano, progresso, competencia_formatada, prazo, ultima_atualizacao, cor):
+def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor):
     return f"""
         <div style='border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
                     background-color: #f9f9f9; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
-            <h4 style='margin: 0 0 12px;'>{plano}</h4>
+            <h4 style='margin: 0 0 12px;'>{etapa}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
             <div style='background-color: #eee; border-radius: 8px; overflow: hidden; height: 22px;'>
                 <div style='width: {progresso}%; background-color: {cor}; height: 100%; text-align: center;
@@ -83,28 +83,28 @@ with col3:
     st.metric("Progresso Geral", value=f"{progresso_total}%")
     st.progress(progresso_total / 100)
 
-# Exibir progresso por plano
+# Exibir progresso por etapa
 st.markdown("### Progresso por Atividade")
-planos_unicos = df["Plano"].unique()
+etapas_unicos = df["Etapa"].unique()
 
 blocos_html_lista = []
 
-for plano in planos_unicos:
-    df_plano = df[df["Plano"] == plano]
-    total = df_plano["Total de Pastas"].sum()
-    com_arquivo = df_plano["Pastas com Arquivo"].sum()
+for etapa in etapas_unicos:
+    df_etapa = df[df["Etapa"] == etapa]
+    total = df_etapa["Total de Pastas"].sum()
+    com_arquivo = df_etapa["Pastas com Arquivo"].sum()
     progresso = int((com_arquivo / total) * 100) if total else 0
 
     cor = "#4CAF50" if progresso == 100 else "#2196F3" if progresso >= 50 else "#FF9800"
 
-    prazo = metadados_etapas.get(plano, {}).get("prazo", "N/A")
-    competencia = metadados_etapas.get(plano, {}).get("competencia", "N/A")
+    prazo = metadados_etapas.get(etapa, {}).get("prazo", "N/A")
+    competencia = metadados_etapas.get(etapa, {}).get("competencia", "N/A")
     competencia_formatada = competencia.replace("/", "-")
 
-    caminhos_pasta = [caminhos.get(etapa, "") for etapa in df_plano["Etapa"]]
+    caminhos_pasta = [caminhos.get(etapa, "") for etapa in df_etapa["Etapa"]]
     ultima_atualizacao = max([ultima_data_arquivo(pasta) for pasta in caminhos_pasta if pasta], default="N/A")
 
-    bloco_html = gerar_bloco_html(plano, progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
+    bloco_html = gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
     blocos_html_lista.append(bloco_html)
 
 # Exibir todos os blocos de uma vez
