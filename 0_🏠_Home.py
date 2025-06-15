@@ -90,353 +90,353 @@ if st.button("Atualizar Status"):
     else:
         df = pd.read_csv("dashboard/csv/home.csv")
 
-        blocos_html_lista = []
-        df = gerar_relatorio_pastas(caminhos)
+    blocos_html_lista = []
+    df = gerar_relatorio_pastas(caminhos)
     
-        st.success("Dados atualizados!")
+    st.success("Dados atualizados!")
 
-        # Conversões seguras
-        df["Total de Pastas"] = pd.to_numeric(df["Total de Pastas"], errors="coerce")
-        df["Pastas com Arquivo"] = pd.to_numeric(df["Pastas com Arquivo"], errors="coerce")
-        df["Diferença"] = pd.to_numeric(df["Diferença"], errors="coerce")
+    # Conversões seguras
+    df["Total de Pastas"] = pd.to_numeric(df["Total de Pastas"], errors="coerce")
+    df["Pastas com Arquivo"] = pd.to_numeric(df["Pastas com Arquivo"], errors="coerce")
+    df["Diferença"] = pd.to_numeric(df["Diferença"], errors="coerce")
 
-        # Métricas resumidas
-        col1, col2, col3 = st.columns(3)
-        col1.metric("Total de Arquivos", int(df["Total de Pastas"].sum(skipna=True)))
-        col2.metric("Arquivos Recebidos", int(df["Pastas com Arquivo"].sum(skipna=True)))
-        col3.metric("Arquivos Pendentes", int(df["Diferença"].sum(skipna=True)))
+    # Métricas resumidas
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Total de Arquivos", int(df["Total de Pastas"].sum(skipna=True)))
+    col2.metric("Arquivos Recebidos", int(df["Pastas com Arquivo"].sum(skipna=True)))
+    col3.metric("Arquivos Pendentes", int(df["Diferença"].sum(skipna=True)))
 
-        # Progresso da extração
-        st.subheader("Extração de Arquivos")
+    # Progresso da extração
+    st.subheader("Extração de Arquivos")
 
-        total_pastas = len(df)
-        pastas_com_arquivos = df[df["Pastas com Arquivo"] > 0].shape[0]
+    total_pastas = len(df)
+    pastas_com_arquivos = df[df["Pastas com Arquivo"] > 0].shape[0]
 
-        progresso = pastas_com_arquivos / total_pastas if total_pastas > 0 else 0
+    progresso = pastas_com_arquivos / total_pastas if total_pastas > 0 else 0
 
-        st.progress(progresso)
-        st.metric("Progresso", f"{int(progresso * 100)}%")
+    st.progress(progresso)
+    st.metric("Progresso", f"{int(progresso * 100)}%")
 
-        st.subheader("Progresso por Atividade")
+    st.subheader("Progresso por Atividade")
 
-        planos_unicos = df["Plano"].unique()
+    planos_unicos = df["Plano"].unique()
 
-        metadados_etapas = {
-            "Planilha de Reavaliação": {
-            "prazo":"03",
-            "ajuste_competencia": +1
-
-
-            },
-
-            "Amil - Bi Zetta": {
-            "prazo":"10",
-            "ajuste_competencia": -1
-
-            },
-            "Amil - Envio Relatórios": {
-            "prazo":"15",
-            "ajuste_competencia": -1
-
-            },
-            "Amil - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"16",
-            "ajuste_competencia": -1
-
-            },
+    metadados_etapas = {
+    "Planilha de Reavaliação": {
+    "prazo":"03",
+    "ajuste_competencia": +1
 
 
-            "Bradesco - Arquivo de Cadastro/Faturamento": {
-            "prazo":"05",
-            "ajuste_competencia": -1
+    },
 
-            },
-            "Bradesco - Base Aberta de Sinistro": {
-            "prazo":"05",
-            "ajuste_competencia": -1
+    "Amil - Bi Zetta": {
+    "prazo":"10",
+    "ajuste_competencia": -1
 
-            },
-            "Bradesco - Relatório Gerencial de Sinistralidade": {
-            "prazo":"05",
-            "ajuste_competencia": -1
+    },
+    "Amil - Envio Relatórios": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Bradesco - Bi Zetta": {
-            "prazo":"10",
-            "ajuste_competencia": -1
+    },
+    "Amil - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"16",
+    "ajuste_competencia": -1
 
-            },
-            "Bradesco - Envio Relatório de Sinistralidade": {
-            "prazo":"15",
-            "ajuste_competencia": -1
-
-            },
-            "Bradesco - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"16",
-            "ajuste_competencia": -1
-
-            },
+    },
 
 
-            "Seguros Unimed - Arquivo de Cadastro/Faturamento": {
-            "prazo":"05",
-            "ajuste_competencia": -1
+    "Bradesco - Arquivo de Cadastro/Faturamento": {
+    "prazo":"05",
+    "ajuste_competencia": -1
 
-            },
-            "Seguros Unimed - Base Aberta de Sinistro": {
-            "prazo":"05",
-            "ajuste_competencia": -1
+    },
+    "Bradesco - Base Aberta de Sinistro": {
+    "prazo":"05",
+    "ajuste_competencia": -1
 
-            },
-            "Seguros Unimed - Relatório Gerencial de Sinistralidade": {
-            "prazo":"05",
-            "ajuste_competencia": -1
+    },
+    "Bradesco - Relatório Gerencial de Sinistralidade": {
+    "prazo":"05",
+    "ajuste_competencia": -1
 
-            },
-            "Seguros Unimed - Bi Zetta": {
-            "prazo":"10",
-            "ajuste_competencia": -1
+    },
+    "Bradesco - Bi Zetta": {
+    "prazo":"10",
+    "ajuste_competencia": -1
 
-            }, 
-            "Seguros Unimed - Envio Relatório de Sinistralidade": {
-            "prazo":"16",
-            "ajuste_competencia": -1
+    },
+    "Bradesco - Envio Relatório de Sinistralidade": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"17",
-            "ajuste_competencia": -1
+    },
+    "Bradesco - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"16",
+    "ajuste_competencia": -1
 
-            },
+    },
 
-            "Bradesco (manual) - Relatório Gerencial de Sinistralidade": {
-            "prazo":"05",
-            "ajuste_competencia": -1
 
-            },
-            "Bradesco (manual) - Produção do Relatório": {
-            "prazo":"08",
-            "ajuste_competencia": -1
+    "Seguros Unimed - Arquivo de Cadastro/Faturamento": {
+    "prazo":"05",
+    "ajuste_competencia": -1
 
-            },
-            "Bradesco (Manual) - Envio Relatório de Sinistralidade": {
-            "prazo":"10",
-            "ajuste_competencia": -1
+    },
+    "Seguros Unimed - Base Aberta de Sinistro": {
+    "prazo":"05",
+    "ajuste_competencia": -1
 
-            },
-            "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"11",
-            "ajuste_competencia": -1
+    },
+    "Seguros Unimed - Relatório Gerencial de Sinistralidade": {
+    "prazo":"05",
+    "ajuste_competencia": -1
 
-            },
+    },
+    "Seguros Unimed - Bi Zetta": {
+    "prazo":"10",
+    "ajuste_competencia": -1
 
-            "SulAmérica - Arquivo de Cadastro/Faturamento": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    }, 
+    "Seguros Unimed - Envio Relatório de Sinistralidade": {
+    "prazo":"16",
+    "ajuste_competencia": -1
 
-            },
-            "SulAmérica - Base Aberta de Sinistro": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    },
+    "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"17",
+    "ajuste_competencia": -1
 
-            },
-            "SulAmérica - Relatório Gerencial de Sinistralidade": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    },
 
-            },
-            "SulAmérica - Bi Zetta": {
-            "prazo":"18",
-            "ajuste_competencia": -1
+    "Bradesco (manual) - Relatório Gerencial de Sinistralidade": {
+    "prazo":"05",
+    "ajuste_competencia": -1
 
-            },
-            "SulAmérica - Envio Relatório de Sinistralidade": {
-            "prazo":"27",
-            "ajuste_competencia": -1
+    },
+    "Bradesco (manual) - Produção do Relatório": {
+    "prazo":"08",
+    "ajuste_competencia": -1
 
-            },
-            "SulAmérica - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"28",
-            "ajuste_competencia": -1
+    },
+    "Bradesco (Manual) - Envio Relatório de Sinistralidade": {
+    "prazo":"10",
+    "ajuste_competencia": -1
 
-            },
+    },
+    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"11",
+    "ajuste_competencia": -1
 
-                
-            "Unimed Nacional - Arquivo de Cadastro/Faturamento": {
-            "prazo":"13",
-            "ajuste_competencia": -1
+    },
 
-            },
-            "Unimed Nacional - Base Aberta de Sinistro": {
-            "prazo":"13",
-            "ajuste_competencia": -1
+    "SulAmérica - Arquivo de Cadastro/Faturamento": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Unimed Nacional - Relatório Gerencial de Sinistralidade": {
-            "prazo":"13",
-            "ajuste_competencia": -1
+    },
+    "SulAmérica - Base Aberta de Sinistro": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Unimed Nacional - Bi Zetta": {
-            "prazo":"18",
-            "ajuste_competencia": -1
+    },
+    "SulAmérica - Relatório Gerencial de Sinistralidade": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Unimed Nacional - Envio Relatório de Sinistralidade": {
-            "prazo":"25",
-            "ajuste_competencia": -1
+    },
+    "SulAmérica - Bi Zetta": {
+    "prazo":"18",
+    "ajuste_competencia": -1
 
-            },
-            "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"26",
-            "ajuste_competencia": -1
+    },
+    "SulAmérica - Envio Relatório de Sinistralidade": {
+    "prazo":"27",
+    "ajuste_competencia": -1
 
-            },
+    },
+    "SulAmérica - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"28",
+    "ajuste_competencia": -1
+
+    },
 
                 
-            "Porto Seguro - Arquivo de Cadastro/Faturamento": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    "Unimed Nacional - Arquivo de Cadastro/Faturamento": {
+    "prazo":"13",
+    "ajuste_competencia": -1
 
-            },
-            "Porto Seguro - Base Aberta de Sinistro": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    },
+    "Unimed Nacional - Base Aberta de Sinistro": {
+    "prazo":"13",
+    "ajuste_competencia": -1
 
-            },
-            "Porto Seguro - Relatório Gerencial de Sinistralidade": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    },
+    "Unimed Nacional - Relatório Gerencial de Sinistralidade": {
+    "prazo":"13",
+    "ajuste_competencia": -1
 
-            },
-            "Porto Seguro - Bi Zetta": {
-            "prazo":"20",
-            "ajuste_competencia": -1
+    },
+    "Unimed Nacional - Bi Zetta": {
+    "prazo":"18",
+    "ajuste_competencia": -1
 
-            },
-            "Porto Seguro - Envio Relatório de Sinistralidade": {
-            "prazo":"27",
-            "ajuste_competencia": -1
+    },
+    "Unimed Nacional - Envio Relatório de Sinistralidade": {
+    "prazo":"25",
+    "ajuste_competencia": -1
 
-            },
-            "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"28",
-            "ajuste_competencia": -1
+    },
+    "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"26",
+    "ajuste_competencia": -1
 
-            },
+    },
+
                 
-            "Omint - Arquivo de Cadastro/Faturamento": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    "Porto Seguro - Arquivo de Cadastro/Faturamento": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Omint - Base Aberta de Sinistro": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    },
+    "Porto Seguro - Base Aberta de Sinistro": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Omint - Relatório Gerencial de Sinistralidade": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    },
+    "Porto Seguro - Relatório Gerencial de Sinistralidade": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Omint - Bi Zetta": {
-            "prazo":"20",
-            "ajuste_competencia": -1
+    },
+    "Porto Seguro - Bi Zetta": {
+    "prazo":"20",
+    "ajuste_competencia": -1
 
-            },
-            "Omint - Envio Relatório de Sinistralidade": {
-            "prazo":"27",
-            "ajuste_competencia": -1
+    },
+    "Porto Seguro - Envio Relatório de Sinistralidade": {
+    "prazo":"27",
+    "ajuste_competencia": -1
 
-            },
-            "Omint - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"28",
-            "ajuste_competencia": -1
+    },
+    "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"28",
+    "ajuste_competencia": -1
 
-            },
+    },
+                
+    "Omint - Arquivo de Cadastro/Faturamento": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            "Omint (manual) - Relatório Gerencial de Sinistralidade": {
-            "prazo":"15",
-            "ajuste_competencia": -1
+    },
+    "Omint - Base Aberta de Sinistro": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Omint (manual) - Produção do Relatório": {
-            "prazo":"18",
-            "ajuste_competencia": -1
+    },
+    "Omint - Relatório Gerencial de Sinistralidade": {
+    "prazo":"15",
+    "ajuste_competencia": -1
 
-            },
-            "Omint (manual) - Envio Relatório de Sinistralidade": {
-            "prazo":"20",
-            "ajuste_competencia": -1
+    },
+    "Omint - Bi Zetta": {
+    "prazo":"20",
+    "ajuste_competencia": -1
 
-            },
-            "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"21",
-            "ajuste_competencia": -1
+    },
+    "Omint - Envio Relatório de Sinistralidade": {
+    "prazo":"27",
+    "ajuste_competencia": -1
 
-            },
+    },
+    "Omint - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"28",
+    "ajuste_competencia": -1
+
+    },
+
+    "Omint (manual) - Relatório Gerencial de Sinistralidade": {
+    "prazo":"15",
+    "ajuste_competencia": -1
+
+    },
+    "Omint (manual) - Produção do Relatório": {
+    "prazo":"18",
+    "ajuste_competencia": -1
+
+    },
+    "Omint (manual) - Envio Relatório de Sinistralidade": {
+    "prazo":"20",
+    "ajuste_competencia": -1
+
+    },
+    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"21",
+    "ajuste_competencia": -1
+
+    },
             
-            "Hapvida - Arquivo de Cadastro/Faturamento": {
-            "prazo":"20",
-            "ajuste_competencia": -2
+    "Hapvida - Arquivo de Cadastro/Faturamento": {
+    "prazo":"20",
+    "ajuste_competencia": -2
 
-            },
-            "Hapvida - Base Aberta de Sinistro": {
-            "prazo":"20",
-            "ajuste_competencia": -2
+    },
+    "Hapvida - Base Aberta de Sinistro": {
+    "prazo":"20",
+    "ajuste_competencia": -2
 
-            },
-            "Hapvida - Relatório Gerencial de Sinistralidade": {
-            "prazo":"20",
-            "ajuste_competencia": -2
+    },
+    "Hapvida - Relatório Gerencial de Sinistralidade": {
+    "prazo":"20",
+    "ajuste_competencia": -2
 
-            },
-            "Hapvida - Bi Zetta": {
-            "prazo":"25",
-            "ajuste_competencia": -2
+    },
+    "Hapvida - Bi Zetta": {
+    "prazo":"25",
+    "ajuste_competencia": -2
 
-            },
-            "Hapvida - Envio Relatório de Sinistralidade": {
-            "prazo":"28",
-            "ajuste_competencia": -2
+    },
+    "Hapvida - Envio Relatório de Sinistralidade": {
+    "prazo":"28",
+    "ajuste_competencia": -2
 
-            },
-            "Hapvida - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"29",
-            "ajuste_competencia": -2
+    },
+    "Hapvida - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"29",
+    "ajuste_competencia": -2
 
-            },
+    },
                 
 
-            "Plena Saúde - Arquivo de Cadastro/Faturamento": {
-            "prazo":"20",
-            "ajuste_competencia": -1
+    "Plena Saúde - Arquivo de Cadastro/Faturamento": {
+    "prazo":"20",
+    "ajuste_competencia": -1
 
-            },
-            "Plena Saúde - Base Aberta de Sinistro": {
-            "prazo":"20",
-            "ajuste_competencia": -1
+    },
+    "Plena Saúde - Base Aberta de Sinistro": {
+    "prazo":"20",
+    "ajuste_competencia": -1
 
-            },
-            "Plena Saúde - Relatório Gerencial de Sinistralidade": {
-            "prazo":"20",
-            "ajuste_competencia": -1
+    },
+    "Plena Saúde - Relatório Gerencial de Sinistralidade": {
+    "prazo":"20",
+    "ajuste_competencia": -1
 
-            },
-            "Plena Saúde - Bi Zetta": {
-            "prazo":"25",
-            "ajuste_competencia": -1
+    },
+    "Plena Saúde - Bi Zetta": {
+    "prazo":"25",
+    "ajuste_competencia": -1
 
-            },
-            "Plena Saúde - Envio Relatório de Sinistralidade": {
-            "prazo":"28",
-            "ajuste_competencia": -1
+    },
+    "Plena Saúde - Envio Relatório de Sinistralidade": {
+    "prazo":"28",
+    "ajuste_competencia": -1
 
-            },
-            "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade": {
-            "prazo":"28",
-            "ajuste_competencia": -1
+    },
+    "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade": {
+    "prazo":"28",
+     "ajuste_competencia": -1
 
             }
         }
