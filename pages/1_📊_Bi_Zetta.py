@@ -7,12 +7,21 @@ from dateutil.relativedelta import relativedelta
 import locale
 
 
+st.set_page_config(layout="wide", page_title="Bi Zetta")
+
+if LOCAL_ENV:
+    df = gerar_relatorio_pastas(caminhos_2)
+else:
+    df = pd.read_csv("dashboard/csv/bi_zetta.csv")
+
+
+
 try:
     locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 except locale.Error:
     # fallback para o default do sistema
     locale.setlocale(locale.LC_TIME, '')
-st.set_page_config(layout="wide", page_title="Bi Zetta")
+
 
 
 
@@ -65,8 +74,11 @@ def cor_barra(progresso):
         return "#FF4444"  # vermelho
 
 if st.button("Atualizar Status"):
+    if LOCAL_ENV:
+        df = gerar_relatorio_pastas(caminhos_2)
+    else:
+        df = pd.read_csv("dashboard/csv/bi_zetta.csv")
     blocos_html_lista = []
-    df = gerar_relatorio_pastas(caminhos_2)
    
     st.success("Dados atualizados!")
 
