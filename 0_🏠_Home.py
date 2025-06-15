@@ -11,10 +11,15 @@ LOCAL_ENV = os.path.exists("C:/JORGE_V1")  # você pode ajustar esse caminho con
 
 
 if LOCAL_ENV:
-    df = gerar_relatorio_pastas(caminhos)
+    st.success("Lendo dados localmente com gerar_relatorio_pastas.")
 else:
-    df = pd.read_csv("dashboard/csv/home.csv")
-
+    st.warning("Ambiente online: tentando ler o CSV.")
+    try:
+        df = pd.read_csv("dashboard/csv/home.csv")
+        st.success("CSV carregado com sucesso.")
+        st.dataframe(df.head())
+    except Exception as e:
+        st.error(f"Erro ao ler CSV: {e}")
 try:
     locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 except locale.Error:
