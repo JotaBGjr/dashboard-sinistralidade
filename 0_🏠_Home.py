@@ -7,6 +7,8 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import locale
 
+
+st.set_page_config(layout="wide", page_title="Dashboard de relatório")
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")  # você pode ajustar esse caminho conforme desejar
 
 
@@ -25,7 +27,7 @@ try:
 except locale.Error:
     # fallback para o default do sistema
     locale.setlocale(locale.LC_TIME, '')
-st.set_page_config(layout="wide", page_title="Dashboard de relatório")
+
 
 
 
