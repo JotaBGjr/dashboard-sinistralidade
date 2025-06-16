@@ -213,7 +213,7 @@ st.markdown("###  Resumo")
 #st.write("Colunas disponíveis:", df.columns.tolist())
 
 # Use nomes corretos
-colunas_resumo = ["Etapa", "Total de Pastas", "Diferença", "Pastas com Arquivo", "Pastas Vazias"]
+colunas_resumo = ["Etapa", "Pastas Vazias","Pastas c/ Arquivos"]
 
 # Garantir que só usaremos colunas que existem
 colunas_existentes = [col for col in colunas_resumo if col in df.columns]

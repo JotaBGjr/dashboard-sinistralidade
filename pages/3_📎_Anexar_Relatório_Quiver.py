@@ -216,7 +216,7 @@ st.markdown("###  Resumo")
 colunas_resumo = ["Etapa", "Total de Pastas", "Diferença", "Pastas com Arquivo", "Pastas Vazias"]
 
 # Garantir que só usaremos colunas que existem
-colunas_existentes = [col for col in colunas_resumo if col in df.columns]
+colunas_resumo = ["Etapa", "Pastas Vazias","Pastas c/ Arquivos"]
 
 df_resumo = df[colunas_existentes].groupby("Etapa", as_index=False).sum()
 
