@@ -124,31 +124,37 @@ def preparar_df(df):
     df["Pastas com Arquivo"] = pd.to_numeric(df["Pastas com Arquivo"], errors="coerce")
     df["Diferença"] = pd.to_numeric(df["Diferença"], errors="coerce")
     return df
-
+cache_atualizacao = {}
 def ultima_data_arquivo(pasta):
     if not LOCAL_ENV or not os.path.exists(pasta):
         return "Indisponível"
     try:
-        arquivos = [os.path.join(pasta, f) for f in os.listdir(pasta)]
-        datas = [os.path.getmtime(f) for f in arquivos if os.path.isfile(f)]
-        if datas:
-            ultima_data = max(datas)
-            return datetime.fromtimestamp(ultima_data).strftime('%d/%m/%Y')
-        return "Sem arquivos"
+        datas = [os.path.getmtime(os.path.join(pasta, f)) for f in os.listdir(pasta) if os.path.isfile(os.path.join(pasta, f))]
+        return datetime.fromtimestamp(max(datas)).strftime('%d/%m/%y') if datas else "Sem arquivos"
     except Exception:
         return "Erro"
-    
+
+def cor_operadora(etapa_nome):
+    for op in operadoras_competencia:
+        if op.lower() in etapa_nome.lower():
+            cores = {
+                "Amil": "#c5e1a5", "Bradesco": "#bbdefb", "Omint": "#ffe0b2",
+                "SulAmérica": "#f8bbd0", "Hapvida": "#d1c4e9", "Unimed": "#c8e6c9"
+            }
+            return cores.get(op, "#f0f0f0")
+    return "#f0f0f0"    
 
 
 
-def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor_barra):
+def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor_barra, status):
     cor_status = {
     "Atrasado": "#f44336",       # vermelho
     "Em andamento": "#ff9800",   # amarelo
     "Concluído": "#4caf50"       # verde
 }.get(status, "#9e9e9e")
+    background_color = cor_operadora(etapa)
     return f"""
-        <div style='border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
+        <div style=' background: {background_color}; border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
                     background-color: #f9f9f9; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
             <h4 style='margin: 0 0 12px;'>{etapa}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
@@ -205,26 +211,34 @@ for etapa in etapas_unicos:
     competencia_formatada = competencia.replace("/", "-") if competencia != "N/A" else competencia
 
     status=""
-    if prazo != "N/A" and progresso < 100:
+    if progresso == 100:
+        status = "Concluído"
+    elif prazo != "N/A":
         try:
             dia_prazo  = int(prazo.split(" ")[1])
             hoje = datetime.today().day
-
-            if hoje > dia_prazo:
-                status = "Atrasado"
-            else:
-                status = "Em andamento"
+            status = "Atrasado" if hoje > dia_prazo else "Em andamento"
         except Exception as e:
                 status = "Pendente"
     else:
-        status = "Concluído" if progresso == 100 else "Pendente"        
+        status = "Pendente"
 
-    caminhos_pasta = [caminhos.get(etapa, "") for et in df_etapa["Etapa"]]
-    ultima_atualizacao = max([ultima_data_arquivo(pasta) for pasta in caminhos_pasta if pasta], default="N/A")
+    if LOCAL_ENV:
+        caminhos_pasta = [caminhos.get(etapa, "") for et in df_etapa["Etapa"]]
+        cache_atualizacao = {}
+        for pasta in set(caminhos_pasta):
+            if pasta and pasta in cache_atualizacao:
+                cache_atualizacao[pasta] = ultima_data_arquivo(pasta)
+        valores = [cache_atualizacao.get(p, "Indisponível") for p in caminhos_pasta if p]
+        valores_validos = [v for v in valores if v not in ["Indisponível", "Erro", "Sem arquivos"]]
+        ultima_atualizacao = valores_validos[0] if valores_validos else "Indisponível"
+    else:
+        valores = df_etapa["Últ. Atualização"].dropna().tolist()
+        ultima_atualizacao = valores[0] if valores else "Indisponível"
 
     #atraso_html = "<span style='color: red; font-weight: bold;'> ⚠️ Atrasado </span>" if atrasado else ""
     
-    bloco_html = gerar_bloco_html(etapa , progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
+    bloco_html = gerar_bloco_html(etapa , progresso, competencia_formatada, prazo, ultima_atualizacao, cor, status)
     blocos_html_lista.append(bloco_html)
 
 
