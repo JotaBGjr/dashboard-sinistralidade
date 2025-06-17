@@ -174,7 +174,7 @@ caminhos_1 = {
 }
 
 caminhos_2 = {
-    "Planilha de Reavaliação": r"C:\JORGE_V1\Jorge\PLANILHA_REAVALIACAO_03",
+   
 
     "Amil - Bi Zetta": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO",
 
@@ -209,7 +209,7 @@ caminhos_2 = {
     #"GNDI - Bi Zetta": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\RELATORIO",
 }
 caminhos_3 = {    
-    "Planilha de Reavaliação": r"C:\JORGE_V1\Jorge\PLANILHA_REAVALIACAO_03",
+
     "Amil - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_ENVIADOS",
 
     "Bradesco - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_ENVIADOS",
@@ -240,7 +240,7 @@ caminhos_3 = {
     #"GNDI - Bi Zetta": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\RELATORIO",
 }
 caminhos_4 = {
-    "Planilha de Reavaliação": r"C:\JORGE_V1\Jorge\PLANILHA_REAVALIACAO_03",
+   
     "Amil - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_QUIVER",
 
     "Bradesco - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_QUIVER",

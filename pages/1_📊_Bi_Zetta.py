@@ -6,7 +6,7 @@ from functions.verifica_pastas import gerar_relatorio_pastas, caminhos_2
 from dateutil.relativedelta import relativedelta
 
 st.set_page_config(page_title="Painel Geral", layout="wide")
-st.title("📊 Painel Geral dos Relatórios de Sinistralidade")
+st.title("📊 Visão Geral dos Relatórios no BI")
 
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")
 
