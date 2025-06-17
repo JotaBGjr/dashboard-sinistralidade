@@ -51,7 +51,7 @@ caminhos = {
 
 
     "Seguros Unimed - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\BASE_CADASTRO" ,
-    "Seguros Unimed - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\BASE_SINISTRO" ,
+    "Seguros Unimed - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO" ,
     "Seguros Unimed - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\BASE_SINISTRALIDADE",
     "Seguros Unimed - Bi Zetta": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO", 
     "Seguros Unimed - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_ENVIADOS",
