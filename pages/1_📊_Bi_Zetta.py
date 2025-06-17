@@ -224,12 +224,12 @@ for etapa in etapas_unicos:
         status = "Pendente"
 
     if LOCAL_ENV:
-        caminhos_pasta = [caminhos.get(etapa, "") for et in df_etapa["Etapa"]]
+        caminhos_2_pasta = [caminhos_2.get(etapa, "") for et in df_etapa["Etapa"]]
         cache_atualizacao = {}
-        for pasta in set(caminhos_pasta):
+        for pasta in set(caminhos_2_pasta):
             if pasta and pasta in cache_atualizacao:
                 cache_atualizacao[pasta] = ultima_data_arquivo(pasta)
-        valores = [cache_atualizacao.get(p, "Indisponível") for p in caminhos_pasta if p]
+        valores = [cache_atualizacao.get(p, "Indisponível") for p in caminhos_2_pasta if p]
         valores_validos = [v for v in valores if v not in ["Indisponível", "Erro", "Sem arquivos"]]
         ultima_atualizacao = valores_validos[0] if valores_validos else "Indisponível"
     else:
