@@ -10,9 +10,11 @@ from functions.verifica_pastas import (
     caminhos_4
 )
 
+# Pasta de saída
 output_dir = os.path.join("dashboard", "csv")
 os.makedirs(output_dir, exist_ok=True)
 
+# Tabelas a gerar
 tabelas = [
     ("home.csv", caminhos),
     ("recepcao.csv", caminhos_1),
@@ -21,36 +23,49 @@ tabelas = [
     ("anexar_quiver.csv", caminhos_4),
 ]
 
-# Corrigido: busca arquivos em subpastas também
+# Corrigido: busca arquivos nas subpastas (ex: RELATORIO_ENVIADOS/FCTH)
 def obter_ultima_atualizacao(caminho_pasta):
     try:
-        caminhos_arquivos = []
-        for root, dirs, files in os.walk(caminho_pasta):
-            for f in files:
-                caminho_completo = os.path.join(root, f)
-                if os.path.isfile(caminho_completo):
-                    caminhos_arquivos.append(caminho_completo)
+        arquivos_encontrados = []
+        
+        if not os.path.exists(caminho_pasta):
+            return "Caminho inexistente"
+        
+        subpastas = [
+            os.path.join(caminho_pasta, d)
+            for d in os.listdir(caminho_pasta)
+            if os.path.isdir(os.path.join(caminho_pasta, d))
+        ]
+        
+        for subpasta in subpastas:
+            for arquivo in os.listdir(subpasta):
+                caminho_arquivo = os.path.join(subpasta, arquivo)
+                if os.path.isfile(caminho_arquivo):
+                    arquivos_encontrados.append(caminho_arquivo)
 
-        if not caminhos_arquivos:
+        if not arquivos_encontrados:
             return "Sem arquivos"
 
-        mais_recente = max(os.path.getmtime(f) for f in caminhos_arquivos)
+        mais_recente = max(os.path.getmtime(f) for f in arquivos_encontrados)
         return datetime.fromtimestamp(mais_recente).strftime("%d/%m/%Y")
-    except Exception:
-        return "Erro"
+    
+    except Exception as e:
+        return f"Erro: {e}"
 
+# Geração dos CSVs
 for nome_csv, dicionario in tabelas:
     try:
         df = gerar_relatorio_pastas(dicionario)
 
-        atualizacoes = [
-            obter_ultima_atualizacao(dicionario.get(etapa))
-            for etapa in df["Etapa"]
+        # Atualização para cada etapa
+        df["Últ. Atualização"] = [
+            obter_ultima_atualizacao(dicionario.get(etapa)) for etapa in df["Etapa"]
         ]
-        df["Últ. Atualização"] = atualizacoes
 
+        # Caminho do CSV final
         caminho_arquivo = os.path.join(output_dir, nome_csv)
         df.to_csv(caminho_arquivo, index=False, encoding="utf-8-sig")
         print(f" CSV gerado: {caminho_arquivo}")
+    
     except Exception as e:
         print(f" Erro ao processar {nome_csv}: {e}")
