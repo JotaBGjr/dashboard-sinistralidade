@@ -137,15 +137,24 @@ def ultima_data_arquivo(pasta):
         return "Sem arquivos"
     except Exception:
         return "Erro"
+    
 
-def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor):
+
+
+def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor_barra):
+    cor_status = {
+    "Atrasado": "#f44336",       # vermelho
+    "Em andamento": "#ff9800",   # amarelo
+    "Concluído": "#4caf50"       # verde
+}.get(status, "#9e9e9e")
     return f"""
         <div style='border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
                     background-color: #f9f9f9; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
             <h4 style='margin: 0 0 12px;'>{etapa}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
+            <div style='margin-bottom: 8px;'>Status: <span style='color: {cor_status}; font-weight: bold;'>{status}</span></div>
             <div style='background-color: #eee; border-radius: 8px; overflow: hidden; height: 22px;'>
-                <div style='width: {progresso}%; background-color: {cor}; height: 100%; text-align: center;
+                <div style='width: {progresso}%; background-color: {cor_barra}; height: 100%; text-align: center;
                             color: white; font-weight: bold;'>{progresso}%</div>
             </div>
         </div>
@@ -195,26 +204,30 @@ for etapa in etapas_unicos:
     competencia = identificar_competencia(etapa)
     competencia_formatada = competencia.replace("/", "-") if competencia != "N/A" else competencia
 
-    atrasado = False
-    if prazo != "N/A" and competencia != "N/A" progresso < 100:
+    status=""
+    if prazo != "N/A" and progresso < 100:
         try:
-            dia = int(prazo.split("Dia")[1].strip())
-            mes, ano=map(int, competencia.split("/"))
-            data_prazo = datetime(ano=2000 + ano if ano < 100 else ano,month=mes, day = dia)
-            hoje = datetime.today()
-            if hoje. date() > data_prazo.date():
-                atrasado = True
+            dia_prazo  = int(prazo.split(" ")[1])
+            hoje = datetime.today().day
+
+            if hoje > dia_prazo:
+                status = "Atrasado"
+            else:
+                status = "Em andamento"
         except Exception as e:
-            st.warning(f"Erro ao processar data para {etapa}: {e}")
-            
+                status = "Pendente"
+    else:
+        status = "Concluído" if progresso == 100 else "Pendente"        
 
     caminhos_pasta = [caminhos.get(etapa, "") for et in df_etapa["Etapa"]]
     ultima_atualizacao = max([ultima_data_arquivo(pasta) for pasta in caminhos_pasta if pasta], default="N/A")
 
-    atraso_html = "<span style='color: red; font-weight: bold;'> ⚠️ Atrasado </span>" if atrasado else ""
+    #atraso_html = "<span style='color: red; font-weight: bold;'> ⚠️ Atrasado </span>" if atrasado else ""
     
-    bloco_html = gerar_bloco_html(etapa + atraso_html, progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
+    bloco_html = gerar_bloco_html(etapa , progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
     blocos_html_lista.append(bloco_html)
+
+
 
 # Exibir todos os blocos de uma vez
 st.components.v1.html(
