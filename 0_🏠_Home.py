@@ -183,6 +183,7 @@ etapas_unicos = df["Etapa"].unique()
 blocos_html_lista = []
 
 for etapa in etapas_unicos:
+    
     df_etapa = df[df["Etapa"] == etapa]
     total = df_etapa["Total de Pastas"].sum()
     com_arquivo = df_etapa["Pastas com Arquivo"].sum()
@@ -194,10 +195,25 @@ for etapa in etapas_unicos:
     competencia = identificar_competencia(etapa)
     competencia_formatada = competencia.replace("/", "-") if competencia != "N/A" else competencia
 
+    atrasado = False
+    if prazo != "N/A" and competencia != "N/A" progresso < 100:
+        try:
+            dia = int(prazo.split("Dia")[1].strip())
+            mes, ano=map(int, competencia.split("/"))
+            data_prazo = datetime(ano=2000 + ano if ano < 100 else ano,month=mes, day = dia)
+            hoje = datetime.today()
+            if hoje. date() > data_prazo.date():
+                atrasado = True
+        except Exception as e:
+            st.warning(f"Erro ao processar data para {etapa}: {e}")
+            
+
     caminhos_pasta = [caminhos.get(etapa, "") for et in df_etapa["Etapa"]]
     ultima_atualizacao = max([ultima_data_arquivo(pasta) for pasta in caminhos_pasta if pasta], default="N/A")
 
-    bloco_html = gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
+    atraso_html = "<span style='color: red; font-weight: bold;'> ⚠️ Atrasado </span>" if atrasado else ""
+    
+    bloco_html = gerar_bloco_html(etapa + atraso_html, progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
     blocos_html_lista.append(bloco_html)
 
 # Exibir todos os blocos de uma vez
