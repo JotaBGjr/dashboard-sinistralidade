@@ -11,86 +11,87 @@ st.title("📊 Painel Geral dos Relatórios de Sinistralidade")
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")
 
 prazos_etapas = {
-    "Planilha de Reavaliação":{"prazo": "Dia 15"},
+    "Planilha de Reavaliação":{"prazo": "Dia 03"},
 
     "Amil - Bi Zetta":{"prazo": "Dia 15"},
     "Amil - Envio Relatórios":{"prazo": "Dia 15"},
     "Amil - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
 
-    "Bradesco - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
-    "Bradesco - Base Aberta de Sinistro":{"prazo": "Dia 15"},
-    "Bradesco - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Bradesco - Bi Zetta":{"prazo": "Dia 15"},
+    "Bradesco - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 05"},
+    "Bradesco - Base Aberta de Sinistro":{"prazo": "Dia 05"},
+    "Bradesco - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 05"},
+    "Bradesco - Bi Zetta":{"prazo": "Dia 10"},
     "Bradesco - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Bradesco - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Bradesco - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 16"},
 
 
-    "Seguros Unimed - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
-    "Seguros Unimed - Base Aberta de Sinistro":{"prazo": "Dia 15"},
-    "Seguros Unimed - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Seguros Unimed - Bi Zetta":{"prazo": "Dia 15"}, 
-    "Seguros Unimed - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Seguros Unimed - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 05"},
+    "Seguros Unimed - Base Aberta de Sinistro":{"prazo": "Dia 05"},
+    "Seguros Unimed - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 05"},
+    "Seguros Unimed - Bi Zetta":{"prazo": "Dia 10"}, 
+    "Seguros Unimed - Envio Relatório de Sinistralidade":{"prazo": "Dia 16"},
     "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
-    "Bradesco (manual) - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Bradesco (manual) - Produção do Relatório":{"prazo": "Dia 15"},
-    "Bradesco (Manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Bradesco (manual) - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 05"},
+    "Bradesco (manual) - Produção do Relatório":{"prazo": "Dia 10"},
+    "Bradesco (Manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 10"},
+    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 11"},
 
-    "SulAmérica - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
-    "SulAmérica - Base Aberta de Sinistro":{"prazo": "Dia 15"},
-    "SulAmérica - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "SulAmérica - Bi Zetta":{"prazo": "Dia 15"},
-    "SulAmérica - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "SulAmérica - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "SulAmérica - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 13"},
+    "SulAmérica - Base Aberta de Sinistro":{"prazo": "Dia 13"},
+    "SulAmérica - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 13"},
+    "SulAmérica - Bi Zetta":{"prazo": "Dia 18"},
+    "SulAmérica - Envio Relatório de Sinistralidade":{"prazo": "Dia 27"},
+    "SulAmérica - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
 
     
-    "Unimed Nacional - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
-    "Unimed Nacional - Base Aberta de Sinistro":{"prazo": "Dia 15"},
-    "Unimed Nacional - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Unimed Nacional - Bi Zetta":{"prazo": "Dia 15"},
-    "Unimed Nacional - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Unimed Nacional - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 08"},
+    "Unimed Nacional - Base Aberta de Sinistro":{"prazo": "Dia 08"},
+    "Unimed Nacional - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 08"},
+    "Unimed Nacional - Bi Zetta":{"prazo": "Dia 13"},
+    "Unimed Nacional - Envio Relatório de Sinistralidade":{"prazo": "Dia 20"},
+    "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 21"},
 
     
     "Porto Seguro - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
     "Porto Seguro - Base Aberta de Sinistro":{"prazo": "Dia 15"},
     "Porto Seguro - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Porto Seguro - Bi Zetta":{"prazo": "Dia 15"},
-    "Porto Seguro - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Porto Seguro - Bi Zetta":{"prazo": "Dia 20"},
+    "Porto Seguro - Envio Relatório de Sinistralidade":{"prazo": "Dia 27"},
+    "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
     
     "Omint - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
     "Omint - Base Aberta de Sinistro":{"prazo": "Dia 15"},
     "Omint - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Omint - Bi Zetta":{"prazo": "Dia 15"},
-    "Omint - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Omint - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Omint - Bi Zetta":{"prazo": "Dia 20"},
+    "Omint - Envio Relatório de Sinistralidade":{"prazo": "Dia 27"},
+    "Omint - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
 
     "Omint (manual) - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Omint (manual) - Produção do Relatório":{"prazo": "Dia 15"},
-    "Omint (manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Omint (manual) - Produção do Relatório":{"prazo": "Dia 18"},
+    "Omint (manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 20"},
+    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 21"},
    
-    "Hapvida - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
-    "Hapvida - Base Aberta de Sinistro":{"prazo": "Dia 15"},
-    "Hapvida - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Hapvida - Bi Zetta":{"prazo": "Dia 15"},
-    "Hapvida - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Hapvida - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Hapvida - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 20"},
+    "Hapvida - Base Aberta de Sinistro":{"prazo": "Dia 20"},
+    "Hapvida - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 20"},
+    "Hapvida - Bi Zetta":{"prazo": "Dia 25"},
+    "Hapvida - Envio Relatório de Sinistralidade":{"prazo": "Dia 28"},
+    "Hapvida - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 29"},
     
 
-    "Plena Saúde - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
-    "Plena Saúde - Base Aberta de Sinistro":{"prazo": "Dia 15"},
-    "Plena Saúde - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Plena Saúde - Bi Zetta":{"prazo": "Dia 15"},
-    "Plena Saúde - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
+    "Plena Saúde - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 20"},
+    "Plena Saúde - Base Aberta de Sinistro":{"prazo": "Dia 20"},
+    "Plena Saúde - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 20"},
+    "Plena Saúde - Bi Zetta":{"prazo": "Dia 25"},
+    "Plena Saúde - Envio Relatório de Sinistralidade":{"prazo": "Dia 28"},
+    "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
     
 }
 
 operadoras_competencia = {
+    "Reavaliação": 0,
     "Amil": -2,
     "Bradesco": -1,
     "Seguros Unimed": -1,
@@ -116,35 +117,50 @@ def identificar_competencia(etapa_nome):
 
 
 def carregar_df():
-    return gerar_relatorio_pastas(caminhos_2) if LOCAL_ENV else pd.read_csv("dashboard/csv/bi_zetta.csv")
+    return gerar_relatorio_pastas(caminhos_2) if LOCAL_ENV else pd.read_csv("csv/home.csv")
 
 def preparar_df(df):
     df["Total de Pastas"] = pd.to_numeric(df["Total de Pastas"], errors="coerce")
     df["Pastas com Arquivo"] = pd.to_numeric(df["Pastas com Arquivo"], errors="coerce")
     df["Diferença"] = pd.to_numeric(df["Diferença"], errors="coerce")
     return df
-
+cache_atualizacao = {}
 def ultima_data_arquivo(pasta):
     if not LOCAL_ENV or not os.path.exists(pasta):
         return "Indisponível"
     try:
-        arquivos = [os.path.join(pasta, f) for f in os.listdir(pasta)]
-        datas = [os.path.getmtime(f) for f in arquivos if os.path.isfile(f)]
-        if datas:
-            ultima_data = max(datas)
-            return datetime.fromtimestamp(ultima_data).strftime('%d/%m/%Y')
-        return "Sem arquivos"
+        datas = [os.path.getmtime(os.path.join(pasta, f)) for f in os.listdir(pasta) if os.path.isfile(os.path.join(pasta, f))]
+        return datetime.fromtimestamp(max(datas)).strftime('%d/%m/%y') if datas else "Sem arquivos"
     except Exception:
         return "Erro"
 
-def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor):
+def cor_operadora(etapa_nome):
+    for op in operadoras_competencia:
+        if op.lower() in etapa_nome.lower():
+            cores = {
+                "Amil": "#c5e1a5", "Bradesco": "#bbdefb", "Omint": "#ffe0b2",
+                "SulAmérica": "#f8bbd0", "Hapvida": "#d1c4e9", "Unimed": "#c8e6c9"
+            }
+            return cores.get(op, "#f0f0f0")
+    return "#f0f0f0"    
+
+
+
+def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor_barra, status):
+    cor_status = {
+    "Atrasado": "#f44336",       # vermelho
+    "Em andamento": "#ff9800",   # amarelo
+    "Concluído": "#4caf50"       # verde
+}.get(status, "#9e9e9e")
+    background_color = cor_operadora(etapa)
     return f"""
-        <div style='border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
+        <div style=' background: {background_color}; border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
                     background-color: #f9f9f9; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
             <h4 style='margin: 0 0 12px;'>{etapa}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
+            <div style='margin-bottom: 8px;'>Status: <span style='color: {cor_status}; font-weight: bold;'>{status}</span></div>
             <div style='background-color: #eee; border-radius: 8px; overflow: hidden; height: 22px;'>
-                <div style='width: {progresso}%; background-color: {cor}; height: 100%; text-align: center;
+                <div style='width: {progresso}%; background-color: {cor_barra}; height: 100%; text-align: center;
                             color: white; font-weight: bold;'>{progresso}%</div>
             </div>
         </div>
@@ -182,6 +198,7 @@ etapas_unicos = df["Etapa"].unique()
 blocos_html_lista = []
 
 for etapa in etapas_unicos:
+    
     df_etapa = df[df["Etapa"] == etapa]
     total = df_etapa["Total de Pastas"].sum()
     com_arquivo = df_etapa["Pastas com Arquivo"].sum()
@@ -193,11 +210,38 @@ for etapa in etapas_unicos:
     competencia = identificar_competencia(etapa)
     competencia_formatada = competencia.replace("/", "-") if competencia != "N/A" else competencia
 
-    caminhos_2_pasta = [caminhos_2.get(etapa, "") for et in df_etapa["Etapa"]]
-    ultima_atualizacao = max([ultima_data_arquivo(pasta) for pasta in caminhos_2_pasta if pasta], default="N/A")
+    status=""
+    if progresso == 100:
+        status = "Concluído"
+    elif prazo != "N/A":
+        try:
+            dia_prazo  = int(prazo.split(" ")[1])
+            hoje = datetime.today().day
+            status = "Atrasado" if hoje > dia_prazo else "Em andamento"
+        except Exception as e:
+                status = "Pendente"
+    else:
+        status = "Pendente"
 
-    bloco_html = gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
+    if LOCAL_ENV:
+        caminhos_2_pasta = [caminhos_2.get(etapa, "") for et in df_etapa["Etapa"]]
+        cache_atualizacao = {}
+        for pasta in set(caminhos_2_pasta):
+            if pasta and pasta in cache_atualizacao:
+                cache_atualizacao[pasta] = ultima_data_arquivo(pasta)
+        valores = [cache_atualizacao.get(p, "Indisponível") for p in caminhos_2_pasta if p]
+        valores_validos = [v for v in valores if v not in ["Indisponível", "Erro", "Sem arquivos"]]
+        ultima_atualizacao = valores_validos[0] if valores_validos else "Indisponível"
+    else:
+        valores = df_etapa["Últ. Atualização"].dropna().tolist()
+        ultima_atualizacao = valores[0] if valores else "Indisponível"
+
+    #atraso_html = "<span style='color: red; font-weight: bold;'> ⚠️ Atrasado </span>" if atrasado else ""
+    
+    bloco_html = gerar_bloco_html(etapa , progresso, competencia_formatada, prazo, ultima_atualizacao, cor, status)
     blocos_html_lista.append(bloco_html)
+
+
 
 # Exibir todos os blocos de uma vez
 st.components.v1.html(

@@ -91,7 +91,7 @@ prazos_etapas = {
 }
 
 operadoras_competencia = {
-   "Reavaliação": 0,
+    "Reavaliação": 0,
     "Amil": -2,
     "Bradesco": -1,
     "Seguros Unimed": -1,
@@ -117,35 +117,50 @@ def identificar_competencia(etapa_nome):
 
 
 def carregar_df():
-    return gerar_relatorio_pastas(caminhos_4) if LOCAL_ENV else pd.read_csv("dashboard/csv/anexar_quiver.csv")
+    return gerar_relatorio_pastas(caminhos_4) if LOCAL_ENV else pd.read_csv("csv/home.csv")
 
 def preparar_df(df):
     df["Total de Pastas"] = pd.to_numeric(df["Total de Pastas"], errors="coerce")
     df["Pastas com Arquivo"] = pd.to_numeric(df["Pastas com Arquivo"], errors="coerce")
     df["Diferença"] = pd.to_numeric(df["Diferença"], errors="coerce")
     return df
-
+cache_atualizacao = {}
 def ultima_data_arquivo(pasta):
     if not LOCAL_ENV or not os.path.exists(pasta):
         return "Indisponível"
     try:
-        arquivos = [os.path.join(pasta, f) for f in os.listdir(pasta)]
-        datas = [os.path.getmtime(f) for f in arquivos if os.path.isfile(f)]
-        if datas:
-            ultima_data = max(datas)
-            return datetime.fromtimestamp(ultima_data).strftime('%d/%m/%Y')
-        return "Sem arquivos"
+        datas = [os.path.getmtime(os.path.join(pasta, f)) for f in os.listdir(pasta) if os.path.isfile(os.path.join(pasta, f))]
+        return datetime.fromtimestamp(max(datas)).strftime('%d/%m/%y') if datas else "Sem arquivos"
     except Exception:
         return "Erro"
 
-def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor):
+def cor_operadora(etapa_nome):
+    for op in operadoras_competencia:
+        if op.lower() in etapa_nome.lower():
+            cores = {
+                "Amil": "#c5e1a5", "Bradesco": "#bbdefb", "Omint": "#ffe0b2",
+                "SulAmérica": "#f8bbd0", "Hapvida": "#d1c4e9", "Unimed": "#c8e6c9"
+            }
+            return cores.get(op, "#f0f0f0")
+    return "#f0f0f0"    
+
+
+
+def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor_barra, status):
+    cor_status = {
+    "Atrasado": "#f44336",       # vermelho
+    "Em andamento": "#ff9800",   # amarelo
+    "Concluído": "#4caf50"       # verde
+}.get(status, "#9e9e9e")
+    background_color = cor_operadora(etapa)
     return f"""
-        <div style='border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
+        <div style=' background: {background_color}; border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
                     background-color: #f9f9f9; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
             <h4 style='margin: 0 0 12px;'>{etapa}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
+            <div style='margin-bottom: 8px;'>Status: <span style='color: {cor_status}; font-weight: bold;'>{status}</span></div>
             <div style='background-color: #eee; border-radius: 8px; overflow: hidden; height: 22px;'>
-                <div style='width: {progresso}%; background-color: {cor}; height: 100%; text-align: center;
+                <div style='width: {progresso}%; background-color: {cor_barra}; height: 100%; text-align: center;
                             color: white; font-weight: bold;'>{progresso}%</div>
             </div>
         </div>
@@ -183,6 +198,7 @@ etapas_unicos = df["Etapa"].unique()
 blocos_html_lista = []
 
 for etapa in etapas_unicos:
+    
     df_etapa = df[df["Etapa"] == etapa]
     total = df_etapa["Total de Pastas"].sum()
     com_arquivo = df_etapa["Pastas com Arquivo"].sum()
@@ -194,11 +210,38 @@ for etapa in etapas_unicos:
     competencia = identificar_competencia(etapa)
     competencia_formatada = competencia.replace("/", "-") if competencia != "N/A" else competencia
 
-    caminhos_4_pasta = [caminhos_4.get(etapa, "") for et in df_etapa["Etapa"]]
-    ultima_atualizacao = max([ultima_data_arquivo(pasta) for pasta in caminhos_4_pasta if pasta], default="N/A")
+    status=""
+    if progresso == 100:
+        status = "Concluído"
+    elif prazo != "N/A":
+        try:
+            dia_prazo  = int(prazo.split(" ")[1])
+            hoje = datetime.today().day
+            status = "Atrasado" if hoje > dia_prazo else "Em andamento"
+        except Exception as e:
+                status = "Pendente"
+    else:
+        status = "Pendente"
 
-    bloco_html = gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor)
+    if LOCAL_ENV:
+        caminhos_4_pasta = [caminhos_4.get(etapa, "") for et in df_etapa["Etapa"]]
+        cache_atualizacao = {}
+        for pasta in set(caminhos_4_pasta):
+            if pasta and pasta in cache_atualizacao:
+                cache_atualizacao[pasta] = ultima_data_arquivo(pasta)
+        valores = [cache_atualizacao.get(p, "Indisponível") for p in caminhos_4_pasta if p]
+        valores_validos = [v for v in valores if v not in ["Indisponível", "Erro", "Sem arquivos"]]
+        ultima_atualizacao = valores_validos[0] if valores_validos else "Indisponível"
+    else:
+        valores = df_etapa["Últ. Atualização"].dropna().tolist()
+        ultima_atualizacao = valores[0] if valores else "Indisponível"
+
+    #atraso_html = "<span style='color: red; font-weight: bold;'> ⚠️ Atrasado </span>" if atrasado else ""
+    
+    bloco_html = gerar_bloco_html(etapa , progresso, competencia_formatada, prazo, ultima_atualizacao, cor, status)
     blocos_html_lista.append(bloco_html)
+
+
 
 # Exibir todos os blocos de uma vez
 st.components.v1.html(
@@ -214,7 +257,7 @@ st.markdown("###  Resumo")
 #st.write("Colunas disponíveis:", df.columns.tolist())
 
 # Use nomes corretos
-#colunas_resumo = ["Etapa", "Total de Pastas", "Diferença", "Pastas com Arquivo", "Pastas Vazias"]
+colunas_resumo = ["Etapa", "Pastas Vazias","Pastas c/ Arquivos"]
 
 # Garantir que só usaremos colunas que existem
 colunas_existentes = [col for col in colunas_resumo if col in df.columns]
