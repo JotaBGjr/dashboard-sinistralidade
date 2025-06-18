@@ -149,7 +149,7 @@ def img_operadora(etapa_nome):
         "Plena": "pages/imagens/imagem_plenasaude.jpg",
         "Amil": "pages/imagens/imagem_amil.jpg",
         "Porto":"pages/imagens/imagem_portoseguro.jpg",
-        "Sulamerica": "pages/imagens/imagem_sulamerica.jpg",
+        "SulAmérica": "pages/imagens/imagem_sulamerica.jpg",
         "Seguros Unimed": "pages/imagens/imagem_segurosunimed.jpg",
         "Nacional": "pages/imagens/imagem_unimednacional.jpg"
         # Adicione outras operadoras aqui
