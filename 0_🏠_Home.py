@@ -141,7 +141,11 @@ def cor_operadora(etapa_nome):
         "Omint": "#ffe0b2",
         "SulAmérica": "#f8bbd0",
         "Hapvida": "#d1c4e9",
-        "Unimed": "#c8e6c9"
+        "Unimed": "#c8e6c9",
+        "Plena Saúde": "#fff9c4",
+        "Porto Seguro": "#b3e5fc",
+        "Seguros Unimed": "#e1bee7",
+        "Unimed Nacional": "#a5d6a7"
     }
 
     for op in cores:
@@ -159,8 +163,7 @@ def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atua
 }.get(status, "#9e9e9e")
     background_color = cor_operadora(etapa)
     return f"""
-        <div style=' background: {background_color}; border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
-                    background-color: #f9f9f9; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
+        <div style=' background: {background_color}; border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
             <h4 style='margin: 0 0 12px;'>{etapa}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
             <div style='margin-bottom: 8px;'>Status: <span style='color: {cor_status}; font-weight: bold;'>{status}</span></div>
