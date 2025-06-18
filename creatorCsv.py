@@ -11,7 +11,7 @@ from functions.verifica_pastas import (
 )
 
 # Pasta de saída
-output_dir = os.path.join("atualizacao_dash_dados", "csv")
+output_dir = os.path.join("dash-dados", "csv")
 os.makedirs(output_dir, exist_ok=True)
 
 # Tabelas a gerar
