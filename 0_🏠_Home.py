@@ -145,6 +145,7 @@ def img_base64(caminho):
 def img_operadora(etapa_nome):
     imagens = {
         "Bradesco": "pages/imagens/imagem_bradesco.jpg",
+        "Omint": "pages/imagens/imagem_omint.jpg",
         # Adicione outras operadoras aqui
     }
     for op in imagens:
@@ -157,8 +158,8 @@ def img_operadora(etapa_nome):
 def cor_operadora(etapa_nome):
     cores = {
         "Amil": "#c5e1a5",
-        "Bradesco": "#bbdefb",
-        "Omint": "#ffe0b2",
+        "Bradesco": "#fffff",
+        "Omint": "#fffff",
         "SulAmérica": "#f8bbd0",
         "Hapvida": "#d1c4e9",
         "Unimed": "#c8e6c9",
