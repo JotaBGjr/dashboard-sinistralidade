@@ -196,7 +196,7 @@ def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atua
     "Em andamento": "#ff9800",   # amarelo
     "Concluído": "#4caf50"       # verde
     }.get(status, "#9e9e9e")
-    background_color = "#fff9c4"
+    background_color = cor_operadora(etapa)
     borda_cor =f57c00 if destaque else "#ccc"
     imagem_base64 = img_operadora(etapa)
     imagem_html = f"<img src='{imagem_base64}' style='height: 30px; float: right;'/>" if imagem_base64 else ""
