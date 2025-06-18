@@ -196,7 +196,8 @@ def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atua
     "Em andamento": "#ff9800",   # amarelo
     "Concluído": "#4caf50"       # verde
     }.get(status, "#9e9e9e")
-    background_color = "#fff9c4" if destaque else cor_operadora(etapa)  # amarelo claro
+    background_color = "#fff9c4"
+    borda_cor =f57c00 if destaque else "#ccc"
     imagem_base64 = img_operadora(etapa)
     imagem_html = f"<img src='{imagem_base64}' style='height: 30px; float: right;'/>" if imagem_base64 else ""
     return f"""
@@ -204,7 +205,7 @@ def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atua
             <h4 style='margin: 0 0 12px;'>{etapa} {imagem_html}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
             <div style='margin-bottom: 8px;'>Status: <span style='color: {cor_status}; font-weight: bold;'>{status}</span></div>
-            <div style='background-color: #eee; border-radius: 8px; overflow: hidden; height: 22px;'>
+            <div style='background-color: {background_color}; border-radius: 8px; overflow: hidden; height: 22px;'>
                 <div style='width: {progresso}%; background-color: {cor_barra}; height: 100%; text-align: center;
                             color: white; font-weight: bold;'>{progresso}%</div>
             </div>
