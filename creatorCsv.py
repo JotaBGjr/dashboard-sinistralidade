@@ -11,7 +11,7 @@ from functions.verifica_pastas import (
 )
 
 # Pasta de saída
-output_dir = os.path.join("dashboard", "csv")
+output_dir = os.path.join("dashboardcreatorcsv", "csv")
 os.makedirs(output_dir, exist_ok=True)
 
 # Tabelas a gerar
