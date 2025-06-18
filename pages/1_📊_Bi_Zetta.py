@@ -12,17 +12,17 @@ st.title("📊 Visão Geral dos Relatórios no BI")
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")
 
 prazos_etapas = {
-    "Amil - Bi Zetta":{"prazo": "Dia 15"},
-    "Bradesco - Bi Zetta":{"prazo": "Dia 10"},
-    "Seguros Unimed - Bi Zetta":{"prazo": "Dia 10"}, 
+    "Amil":{"prazo": "Dia 15"},
+    "Bradesco":{"prazo": "Dia 10"},
+    "Seguros Unimed":{"prazo": "Dia 10"}, 
     "Bradesco (manual) - Produção do Relatório":{"prazo": "Dia 10"},
-    "SulAmérica - Bi Zetta":{"prazo": "Dia 18"},
-    "Unimed Nacional - Bi Zetta":{"prazo": "Dia 13"},
-    "Porto Seguro - Bi Zetta":{"prazo": "Dia 20"},
-    "Omint - Bi Zetta":{"prazo": "Dia 20"},
+    "SulAmérica":{"prazo": "Dia 18"},
+    "Unimed Nacional":{"prazo": "Dia 13"},
+    "Porto Seguro":{"prazo": "Dia 20"},
+    "Omint":{"prazo": "Dia 20"},
     "Omint (manual) - Produção do Relatório":{"prazo": "Dia 18"},
-    "Hapvida - Bi Zetta":{"prazo": "Dia 25"},
-    "Plena Saúde - Bi Zetta":{"prazo": "Dia 25"}
+    "Hapvida":{"prazo": "Dia 25"},
+    "Plena Saúde":{"prazo": "Dia 25"}
     
 }
 
