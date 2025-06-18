@@ -176,30 +176,30 @@ caminhos_1 = {
 caminhos_2 = {
    
 
-    "Amil - Bi Zetta": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO",
+    "Amil": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO",
 
     
-    "Bradesco - Bi Zetta": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO",   
+    "Bradesco": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO",   
 
     
-    "Seguros Unimed - Bi Zetta": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO", 
+    "Seguros Unimed": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO", 
     
     
     "Bradesco (Manual) - Produção Manual": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO",
     
-    "SulAmérica - Bi Zetta": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO", 
+    "SulAmérica": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO", 
     
-    "Unimed Nacional - Bi Zetta": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO",
+    "Unimed Nacional": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO",
     
-    "Porto Seguro - Bi Zetta": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO",
+    "Porto Seguro": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO",
     
-    "Omint - Bi Zetta": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO",
+    "Omint": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO",
 
-    "Omint (manual) - Produção Manual": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO",
+    "Omint (manual)": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO",
 
-    "Hapvida - Bi Zetta": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO",
+    "Hapvida": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO",
 
-    "Plena Saúde - Bi Zetta": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO",     
+    "Plena Saúde": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO",     
     
 
     
@@ -210,27 +210,27 @@ caminhos_2 = {
 }
 caminhos_3 = {    
 
-    "Amil - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_ENVIADOS",
+    "Amil": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_ENVIADOS",
 
-    "Bradesco - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_ENVIADOS",
+    "Bradesco": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_ENVIADOS",
 
-    "Seguros Unimed - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_ENVIADOS", 
+    "Seguros Unimed": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_ENVIADOS", 
     
-    "Bradesco (Manual) - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO_ENVIADOS",
+    "Bradesco (Manual)": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO_ENVIADOS",
     
-    "SulAmérica - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO_ENVIADOS", 
+    "SulAmérica": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO_ENVIADOS", 
     
-    "Unimed Nacional - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO_ENVIADOS",
+    "Unimed Nacional": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO_ENVIADOS",
     
-    "Porto Seguro - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO_ENVIADOS",
+    "Porto Seguro": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO_ENVIADOS",
     
-    "Omint - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO_ENVIADOS",
+    "Omint": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO_ENVIADOS",
 
-    "Omint (manual) - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO_ENVIADOS",
+    "Omint (manual)": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO_ENVIADOS",
     
-    "Hapvida - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO_ENVIADOS",
+    "Hapvida": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO_ENVIADOS",
 
-    "Plena Saúde - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO_ENVIADOS",      
+    "Plena Saúde": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO_ENVIADOS",      
     
 
     
@@ -245,23 +245,23 @@ caminhos_4 = {
 
     "Bradesco - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_QUIVER",
 
-    "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_QUIVER", 
+    "Seguros Unimed": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_QUIVER", 
     
-    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO_QUIVER",
+    "Bradesco (Manual)": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO_QUIVER",
     
-    "SulAmérica - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO_QUIVER", 
+    "SulAmérica - Quiver": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO_QUIVER", 
     
-    "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO_QUIVER",
+    "Unimed Nacional": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO_QUIVER",
     
-    "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO_QUIVER",
+    "Porto Seguro": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO_QUIVER",
     
-    "Omint - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO_QUIVER",
+    "Omint": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO_QUIVER",
 
-    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO_QUIVER",
+    "Omint (manual) ": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO_QUIVER",
 
-    "Hapvida - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO_QUIVER",
+    "Hapvida": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO_QUIVER",
 
-    "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO_QUIVER",  
+    "Plena Saúde": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO_QUIVER",  
 
     
     
