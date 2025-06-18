@@ -146,7 +146,7 @@ def img_operadora(etapa_nome):
     imagens = {
         "Bradesco": "pages/imagens/imagem_bradesco.jpg",
         "Omint": "pages/imagens/imagem_omint.jpg",
-        "Hapvida": "pages/imagens/imagem_hapvida.png"
+        "Hapvida": "pages/imagens/imagem_hapvida.jpg"
         # Adicione outras operadoras aqui
     }
     for op in imagens:
