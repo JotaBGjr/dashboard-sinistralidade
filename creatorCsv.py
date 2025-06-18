@@ -11,7 +11,7 @@ from functions.verifica_pastas import (
 )
 
 # Pasta de saída
-output_dir = os.path.join("dashboardcreatorcsv", "csv")
+output_dir = os.path.join("atualizacao_dash_dados", "csv")
 os.makedirs(output_dir, exist_ok=True)
 
 # Tabelas a gerar
@@ -63,7 +63,9 @@ for nome_csv, dicionario in tabelas:
         ]
 
         # Caminho do CSV final
+        
         caminho_arquivo = os.path.join(output_dir, nome_csv)
+        print("Salvando em:", os.path.abspath(caminho_arquivo))
         df.to_csv(caminho_arquivo, index=False, encoding="utf-8-sig")
         print(f" CSV gerado: {caminho_arquivo}")
     

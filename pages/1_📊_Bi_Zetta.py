@@ -117,7 +117,7 @@ def identificar_competencia(etapa_nome):
 
 
 def carregar_df():
-    return gerar_relatorio_pastas(caminhos_2) if LOCAL_ENV else pd.read_csv("dashboardcreatorcsv/csv/bi_zetta.csv")
+    return gerar_relatorio_pastas(caminhos_2) if LOCAL_ENV else pd.read_csv("atualizacao_dash_dados/csv/bi_zetta.csv")
 
 def preparar_df(df):
     df["Total de Pastas"] = pd.to_numeric(df["Total de Pastas"], errors="coerce")
