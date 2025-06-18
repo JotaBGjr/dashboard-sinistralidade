@@ -136,6 +136,14 @@ def ultima_data_arquivo(pasta):
     except Exception:
         return "Erro"
 
+def esta_perto_do_prazo(prazo_str, dias_antecedencia=3):
+    try:
+        dia_prazo = int(prazo_str.split(" ")[1])
+        hoje = datetime.today().day
+        return 0 <= (dia_prazo - hoje) <= dias_antecedencia
+    except:
+        return False
+
 def img_base64(caminho):
     with open(caminho, "rb") as f:
         data = f.read()
@@ -182,13 +190,13 @@ def cor_operadora(etapa_nome):
 
 
 
-def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor_barra, status):
+def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor_barra, status, destaque=False):
     cor_status = {
     "Atrasado": "#f44336",       # vermelho
     "Em andamento": "#ff9800",   # amarelo
     "Concluído": "#4caf50"       # verde
-}.get(status, "#9e9e9e")
-    background_color = cor_operadora(etapa)
+    }.get(status, "#9e9e9e")
+    background_color = "#fff9c4" if destaque else cor_operadora(etapa)  # amarelo claro
     imagem_base64 = img_operadora(etapa)
     imagem_html = f"<img src='{imagem_base64}' style='height: 30px; float: right;'/>" if imagem_base64 else ""
     return f"""
@@ -235,6 +243,8 @@ etapas_unicos = df["Etapa"].unique()
 blocos_html_lista = []
 
 for etapa in etapas_unicos:
+    prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
+    proximo_do_prazo = esta_perto_do_prazo(prazo)
     
     df_etapa = df[df["Etapa"] == etapa]
     total = df_etapa["Total de Pastas"].sum()
@@ -275,8 +285,8 @@ for etapa in etapas_unicos:
 
     #atraso_html = "<span style='color: red; font-weight: bold;'> ⚠️ Atrasado </span>" if atrasado else ""
     
-    bloco_html = gerar_bloco_html(etapa , progresso, competencia_formatada, prazo, ultima_atualizacao, cor, status)
-    blocos_html_lista.append(bloco_html)
+    bloco_html = gerar_bloco_html(etapa , progresso, competencia_formatada, prazo, ultima_atualizacao, cor, status, destaque=proximo_do_prazo)
+    blocos_html_lista.append(bloco_html)    
 
 
 
