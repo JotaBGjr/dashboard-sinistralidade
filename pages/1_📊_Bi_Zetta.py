@@ -20,7 +20,7 @@ prazos_etapas = {
     "Unimed Nacional":{"prazo": "Dia 13"},
     "Porto Seguro":{"prazo": "Dia 20"},
     "Omint":{"prazo": "Dia 20"},
-    "Omint (manual) - Produção do Relatório":{"prazo": "Dia 18"},
+    "Omint (manual)":{"prazo": "Dia 18"},
     "Hapvida":{"prazo": "Dia 25"},
     "Plena Saúde":{"prazo": "Dia 25"}
     

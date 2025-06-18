@@ -12,82 +12,45 @@ st.title("📥 Gestão de Recebimentos de Arquivos")
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")
 
 prazos_etapas = {
-    "Planilha de Reavaliação":{"prazo": "Dia 03"},
-
-    "Amil - Bi Zetta":{"prazo": "Dia 15"},
-    "Amil - Envio Relatórios":{"prazo": "Dia 15"},
-    "Amil - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
-
-
     "Bradesco - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 05"},
     "Bradesco - Base Aberta de Sinistro":{"prazo": "Dia 05"},
     "Bradesco - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 05"},
-    "Bradesco - Bi Zetta":{"prazo": "Dia 10"},
-    "Bradesco - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Bradesco - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 16"},
-
 
     "Seguros Unimed - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 05"},
     "Seguros Unimed - Base Aberta de Sinistro":{"prazo": "Dia 05"},
     "Seguros Unimed - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 05"},
-    "Seguros Unimed - Bi Zetta":{"prazo": "Dia 10"}, 
-    "Seguros Unimed - Envio Relatório de Sinistralidade":{"prazo": "Dia 16"},
-    "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
 
     "Bradesco (manual) - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 05"},
-    "Bradesco (manual) - Produção do Relatório":{"prazo": "Dia 10"},
-    "Bradesco (Manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 10"},
-    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 11"},
 
     "SulAmérica - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 13"},
     "SulAmérica - Base Aberta de Sinistro":{"prazo": "Dia 13"},
     "SulAmérica - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 13"},
-    "SulAmérica - Bi Zetta":{"prazo": "Dia 18"},
-    "SulAmérica - Envio Relatório de Sinistralidade":{"prazo": "Dia 27"},
-    "SulAmérica - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
 
     
     "Unimed Nacional - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 08"},
     "Unimed Nacional - Base Aberta de Sinistro":{"prazo": "Dia 08"},
     "Unimed Nacional - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 08"},
-    "Unimed Nacional - Bi Zetta":{"prazo": "Dia 13"},
-    "Unimed Nacional - Envio Relatório de Sinistralidade":{"prazo": "Dia 20"},
-    "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 21"},
-
     
     "Porto Seguro - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
     "Porto Seguro - Base Aberta de Sinistro":{"prazo": "Dia 15"},
     "Porto Seguro - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Porto Seguro - Bi Zetta":{"prazo": "Dia 20"},
-    "Porto Seguro - Envio Relatório de Sinistralidade":{"prazo": "Dia 27"},
-    "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
+  
     
     "Omint - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
     "Omint - Base Aberta de Sinistro":{"prazo": "Dia 15"},
     "Omint - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Omint - Bi Zetta":{"prazo": "Dia 20"},
-    "Omint - Envio Relatório de Sinistralidade":{"prazo": "Dia 27"},
-    "Omint - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
+  
 
     "Omint (manual) - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Omint (manual) - Produção do Relatório":{"prazo": "Dia 18"},
-    "Omint (manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 20"},
-    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 21"},
    
     "Hapvida - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 20"},
     "Hapvida - Base Aberta de Sinistro":{"prazo": "Dia 20"},
-    "Hapvida - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 20"},
-    "Hapvida - Bi Zetta":{"prazo": "Dia 25"},
-    "Hapvida - Envio Relatório de Sinistralidade":{"prazo": "Dia 28"},
-    "Hapvida - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 29"},
-    
+    "Hapvida - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 20"}, 
 
     "Plena Saúde - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 20"},
     "Plena Saúde - Base Aberta de Sinistro":{"prazo": "Dia 20"},
     "Plena Saúde - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 20"},
-    "Plena Saúde - Bi Zetta":{"prazo": "Dia 25"},
-    "Plena Saúde - Envio Relatório de Sinistralidade":{"prazo": "Dia 28"},
-    "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
+
     
 }
 
