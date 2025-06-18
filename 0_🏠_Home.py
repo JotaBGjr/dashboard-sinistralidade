@@ -243,7 +243,7 @@ etapas_unicos = df["Etapa"].unique()
 blocos_html_lista = []
 
 for etapa in etapas_unicos:
-    if proximo_do_prazo
+    if proximo_do_prazo = prazo - 3
     prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
     proximo_do_prazo = esta_perto_do_prazo(prazo)
     background_color = "#f57c00"
