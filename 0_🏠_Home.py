@@ -243,11 +243,16 @@ etapas_unicos = df["Etapa"].unique()
 blocos_html_lista = []
 
 for etapa in etapas_unicos:
-    if proximo_do_prazo = prazo - 3
+    
     prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
     proximo_do_prazo = esta_perto_do_prazo(prazo)
-    background_color = "#f57c00"
-    borda_cor = "#f57c00" if destaque else "#ccc"
+
+    if proximo_do_prazo:
+        background_color = "#fff9c4"  # amarelo claro
+        borda_cor = "#f57c00"         # laranja escuro chamativo
+    else:
+        background_color = cor_operadora(etapa)
+        borda_cor = "#ccc"            # borda padrão
     
     df_etapa = df[df["Etapa"] == etapa]
     total = df_etapa["Total de Pastas"].sum()
