@@ -196,8 +196,7 @@ def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atua
     "Em andamento": "#ff9800",   # amarelo
     "Concluído": "#4caf50"       # verde
     }.get(status, "#9e9e9e")
-    background_color = "#f57c00"
-    borda_cor = "#f57c00" if destaque else "#ccc"
+
     imagem_base64 = img_operadora(etapa)
     imagem_html = f"<img src='{imagem_base64}' style='height: 30px; float: right;'/>" if imagem_base64 else ""
     return f"""
@@ -244,8 +243,11 @@ etapas_unicos = df["Etapa"].unique()
 blocos_html_lista = []
 
 for etapa in etapas_unicos:
+    if proximo_do_prazo
     prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
     proximo_do_prazo = esta_perto_do_prazo(prazo)
+    background_color = "#f57c00"
+    borda_cor = "#f57c00" if destaque else "#ccc"
     
     df_etapa = df[df["Etapa"] == etapa]
     total = df_etapa["Total de Pastas"].sum()
