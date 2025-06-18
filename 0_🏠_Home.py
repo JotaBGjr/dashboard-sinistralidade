@@ -134,6 +134,19 @@ def ultima_data_arquivo(pasta):
     except Exception:
         return "Erro"
 
+def img_operadora(etapa_nome):
+    imagens = {
+        "Bradesco": "pages/imagens/imagem_bradesco.jpg",
+        "Amil": "pages/imagens/imagem_amil.jpg",
+        "SulAmérica": "pages/imagens/imagem_sulamerica.jpg",
+        "Unimed": "pages/imagens/imagem_unimed.jpg"
+        # Adicione outras operadoras aqui
+    }
+    for op in imagens:
+        if op.lower() in etapa_nome.lower():
+            return imagens[op]
+    return None  # Retorna None se não encontrar
+
 def cor_operadora(etapa_nome):
     cores = {
         "Amil": "#c5e1a5",
@@ -162,9 +175,10 @@ def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atua
     "Concluído": "#4caf50"       # verde
 }.get(status, "#9e9e9e")
     background_color = cor_operadora(etapa)
+    imagem_html = f"<img src='{imagem_path}' style='height: 30px; float: right;'/>" if imagem_path else ""
     return f"""
         <div style=' background: {background_color}; border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
-            <h4 style='margin: 0 0 12px;'>{etapa}</h4>
+            <h4 style='margin: 0 0 12px;'>{etapa} {imagem_html}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
             <div style='margin-bottom: 8px;'>Status: <span style='color: {cor_status}; font-weight: bold;'>{status}</span></div>
             <div style='background-color: #eee; border-radius: 8px; overflow: hidden; height: 22px;'>
