@@ -241,9 +241,9 @@ caminhos_3 = {
 }
 caminhos_4 = {
    
-    "Amil - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_QUIVER",
+    "Amil": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_QUIVER",
 
-    "Bradesco - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_QUIVER",
+    "Bradesco": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_QUIVER",
 
     "Seguros Unimed": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_QUIVER", 
     
