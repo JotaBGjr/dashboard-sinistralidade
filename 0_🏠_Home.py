@@ -135,14 +135,19 @@ def ultima_data_arquivo(pasta):
         return "Erro"
 
 def cor_operadora(etapa_nome):
-    for op in operadoras_competencia:
+    cores = {
+        "Amil": "#c5e1a5",
+        "Bradesco": "#bbdefb",
+        "Omint": "#ffe0b2",
+        "SulAmérica": "#f8bbd0",
+        "Hapvida": "#d1c4e9",
+        "Unimed": "#c8e6c9"
+    }
+
+    for op in cores:
         if op.lower() in etapa_nome.lower():
-            cores = {
-                "Amil": "#c5e1a5", "Bradesco": "#bbdefb", "Omint": "#ffe0b2",
-                "SulAmérica": "#f8bbd0", "Hapvida": "#d1c4e9", "Unimed": "#c8e6c9"
-            }
-            return cores.get(op, "#f0f0f0")
-    return "#f0f0f0"    
+            return cores[op]
+    return "#f0f0f0"  # cor padrão caso nenhuma operadora seja encontrada    
 
 
 
