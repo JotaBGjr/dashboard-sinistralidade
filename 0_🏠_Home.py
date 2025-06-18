@@ -162,7 +162,7 @@ def cor_operadora(etapa_nome):
         "Bradesco": "#fffff",
         "Omint": "#fffff",
         "SulAmérica": "#f8bbd0",
-        "Hapvida": "#d1c4e9",
+        "Hapvida": "#fffff",
         "Unimed": "#c8e6c9",
         "Plena Saúde": "#fff9c4",
         "Porto Seguro": "#b3e5fc",
