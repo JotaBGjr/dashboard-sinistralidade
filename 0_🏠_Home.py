@@ -245,7 +245,7 @@ blocos_html_lista = []
 for etapa in etapas_unicos:
     
     prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
-    proximo_do_prazo = esta_perto_do_prazo(prazo)
+    proximo_do_prazo = esta_perto_do_prazo(prazo) and status != "Concluído"
 
     if proximo_do_prazo:
         background_color = "#fff9c4"  # amarelo claro
