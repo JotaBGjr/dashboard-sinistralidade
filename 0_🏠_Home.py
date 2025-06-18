@@ -147,7 +147,12 @@ def img_operadora(etapa_nome):
         "Bradesco": "pages/imagens/imagem_bradesco.jpg",
         "Omint": "pages/imagens/imagem_omint.jpg",
         "Hapvida": "pages/imagens/imagem_hapvida.jpg",
-        "Plena": "pages/imagens/imagem_plenasaude.jpg"
+        "Plena": "pages/imagens/imagem_plenasaude.jpg",
+        "Amil": "pages/imagens/imagem_amil.jpg",
+        "Porto":"pages/imagens/imagem_portoseguro.jpg",
+        "Sulamerica": "pages/imagens/imagem_sulamerica.jpg",
+        "Seguros Unimed": "pages/imagens/imagem_segurosunimed.jpg",
+        "Nacional": "pages/imagens/imagem_unimednacional.jpg"
         # Adicione outras operadoras aqui
     }
     for op in imagens:
@@ -159,16 +164,15 @@ def img_operadora(etapa_nome):
 
 def cor_operadora(etapa_nome):
     cores = {
-        "Amil": "#c5e1a5",
+        "Amil": "#fffff",
         "Bradesco": "#fffff",
         "Omint": "#fffff",
-        "SulAmérica": "#f8bbd0",
+        "SulAmérica": "#fffff",
         "Hapvida": "#fffff",
-        "Unimed": "#c8e6c9",
-        "Plena Saúde": "#fff9c4",
-        "Porto Seguro": "#b3e5fc",
-        "Seguros Unimed": "#e1bee7",
-        "Unimed Nacional": "#a5d6a7"
+        "Plena Saúde": "#ffffff",
+        "Porto Seguro": "#fffff",
+        "Seguros Unimed": "#fffff",
+        "Unimed Nacional": "#fffff"
     }
 
     for op in cores:

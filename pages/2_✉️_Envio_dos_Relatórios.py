@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 from functions.verifica_pastas import gerar_relatorio_pastas, caminhos_3
 from dateutil.relativedelta import relativedelta
+import base64
 
 st.set_page_config(page_title="Painel Geral", layout="wide")
 st.title("✉️ Gestão de Envios")
@@ -134,12 +135,38 @@ def ultima_data_arquivo(pasta):
     except Exception:
         return "Erro"
 
+def img_base64(caminho):
+    with open(caminho, "rb") as f:
+        data = f.read()
+        encoded = base64.b64encode(data).decode()
+        return f"data:image/jpeg;base64,{encoded}"
+
+def img_operadora(etapa_nome):
+    imagens = {
+        "Bradesco": "pages/imagens/imagem_bradesco.jpg",
+        "Omint": "pages/imagens/imagem_omint.jpg",
+        "Hapvida": "pages/imagens/imagem_hapvida.jpg",
+        "Plena": "pages/imagens/imagem_plenasaude.jpg",
+        "Amil": "pages/imagens/imagem_amil.jpg",
+        "Porto":"pages/imagens/imagem_portoseguro.jpg",
+        "Sulamerica": "pages/imagens/imagem_sulamerica.jpg",
+        "Seguros Unimed": "pages/imagens/imagem_segurosunimed.jpg",
+        "Nacional": "pages/imagens/imagem_unimednacional.jpg"
+        # Adicione outras operadoras aqui
+    }
+    for op in imagens:
+        if op.lower() in etapa_nome.lower():
+            caminho = imagens[op]
+            if os.path.exists(caminho):
+                return img_base64(caminho)
+    return None  # Retorna None se não encontrar
+
 def cor_operadora(etapa_nome):
     for op in operadoras_competencia:
         if op.lower() in etapa_nome.lower():
             cores = {
-                "Amil": "#c5e1a5", "Bradesco": "#bbdefb", "Omint": "#ffe0b2",
-                "SulAmérica": "#f8bbd0", "Hapvida": "#d1c4e9", "Unimed": "#c8e6c9"
+                "Amil": "#fffff", "Bradesco": "#fffff", "Omint": "#fffff",
+                "SulAmérica": "#fffff", "Hapvida": "#fffff", "Unimed": "#fffff"
             }
             return cores.get(op, "#f0f0f0")
     return "#f0f0f0"    
@@ -153,10 +180,11 @@ def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atua
     "Concluído": "#4caf50"       # verde
 }.get(status, "#9e9e9e")
     background_color = cor_operadora(etapa)
+    imagem_base64 = img_operadora(etapa)
+    imagem_html = f"<img src='{imagem_base64}' style='height: 30px; float: right;'/>" if imagem_base64 else ""
     return f"""
-        <div style=' background: {background_color}; border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px;
-                    background-color: #f9f9f9; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
-            <h4 style='margin: 0 0 12px;'>{etapa}</h4>
+        <div style=' background: {background_color}; border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
+            <h4 style='margin: 0 0 12px;'>{etapa} {imagem_html}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
             <div style='margin-bottom: 8px;'>Status: <span style='color: {cor_status}; font-weight: bold;'>{status}</span></div>
             <div style='background-color: #eee; border-radius: 8px; overflow: hidden; height: 22px;'>

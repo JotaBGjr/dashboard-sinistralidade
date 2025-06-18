@@ -1,4 +1,5 @@
 import os
+import base64
 import pandas as pd
 from datetime import datetime
 from functions.verifica_pastas import (
