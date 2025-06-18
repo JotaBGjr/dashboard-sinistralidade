@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 from functions.verifica_pastas import gerar_relatorio_pastas, caminhos
 from dateutil.relativedelta import relativedelta
-import img_base64(caminho):
+import base64
 
 
 st.set_page_config(page_title="Painel Geral", layout="wide")
