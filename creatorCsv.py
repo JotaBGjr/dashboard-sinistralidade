@@ -12,7 +12,7 @@ from functions.verifica_pastas import (
 )
 
 # Pasta de saída
-output_dir = os.path.join("dash-dados", "csv")
+output_dir = r"C:\JORGE_V1\Jorge\00_ATIVIDADES\SCRIPTS\dashboard\dash-dados\csv"
 os.makedirs(output_dir, exist_ok=True)
 
 # Tabelas a gerar
