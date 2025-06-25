@@ -6,6 +6,10 @@ from functions.verifica_pastas import gerar_relatorio_pastas, caminhos
 from dateutil.relativedelta import relativedelta
 import base64
 
+if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
+    st.warning("⚠️ Você precisa estar logado para acessar esta página.")
+    st.stop()  # Interrompe a execução
+
 
 st.set_page_config(page_title="Painel Geral", layout="wide")
 st.title("📊 Painel de Status Geral")
