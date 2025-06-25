@@ -1,5 +1,5 @@
-from functions.data_loader import processar_planilha
-from functions.db_handler import criar_banco, inserir_dados
+from functions_medicas.data_loader import processar_planilha
+from functions_medicas.db_handler import criar_banco, inserir_dados
 
 # Criar banco (executar uma vez apenas)
 criar_banco()

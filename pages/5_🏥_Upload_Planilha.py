@@ -1,10 +1,16 @@
-import streamlit as st 
+import streamlit as st
+import sys
 import os
-from functions.data_loader import processar_planilha
-from functions.db_handler import inserir_dados
 
+# Adiciona dash-dados ao sys.path
+DASH_DADOS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "dash-dados"))
+if DASH_DADOS_PATH not in sys.path:
+    sys.path.insert(0, DASH_DADOS_PATH)
 
-st.set_page_config(page_title ="📤 Upload de Planilha", layout="wide")
+from functions_medicas.data_loader import processar_planilha
+from functions_medicas.db_handler import inserir_dados
+
+st.set_page_config(page_title="📤 Upload de Planilha", layout="wide")
 st.title("📤 Upload de Planilha Médica")
 
 uploaded_file = st.file_uploader("Selecione o arquivo Excel (.xlsx)", type=["xlsx"])
@@ -19,7 +25,7 @@ if uploaded_file:
         f.write(uploaded_file.getbuffer())
 
     st.success(f" Arquivo '{uploaded_file.name}'salvo com sucesso!")
-     if st.button ("📊 Processar e Inserir no Banco de Dados"):
+    if st.button (" Processar e Inserir no Banco de Dados"):
         try:
             pacientes, valores = processar_planilha(caminho_salvo)
             inserir_dados(pacientes, valores)
