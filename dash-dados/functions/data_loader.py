@@ -8,7 +8,7 @@ def converter_datas_excel(colunas):
 # Função principal para carregar e processar a planilha
 def processar_planilha(path_arquivo):
     aba = "ANÁLISES MÉDICAS"
-    df = pd.read_excel(path_arquivo, sheet_name=aba, header=1)
+    df = pd.read_excel(path_arquivo, sheet_name=aba, header=2)
 
     # Extrair metadados da célula A1
     df_meta = pd.read_excel(path_arquivo, sheet_name=aba, header=None, nrows=1, usecols="A")
@@ -28,10 +28,12 @@ def processar_planilha(path_arquivo):
     colunas = df.columns.tolist()
     # Limpa os nomes das colunas para facilitar comparação
     colunas_limpa = [str(c).strip().replace('\n', ' ').replace('  ', ' ') for c in colunas]
-
+    print("Colunas encontradas (após limpeza):")
+    for c in colunas_limpa:
+        print(f" - {c!r}")
     # Localiza as posições reais
     try:
-        colunas=limpa = [str(c).strip().replace('\n',' ').replace('  ') for c in colunas]
+        colunas_limpa = [str(c).strip().replace('\n',' ').replace('  ', ' ') for c in colunas]
 
         print("colunas limpas:")
         for c in colunas_limpa:
@@ -40,7 +42,7 @@ def processar_planilha(path_arquivo):
         idx_fim = colunas_limpa.index("Total")
     except ValueError as e:
         raise ValueError("Erro ao localizar colunas de datas: " + str(e))
-        colunas_datas = colunas[idx_inicio:idx_fim]
+    colunas_datas = colunas[idx_inicio:idx_fim]
 
     # Extrair e tratar dados estáticos (cadastro)
     dados_pacientes = []
@@ -62,7 +64,7 @@ def processar_planilha(path_arquivo):
             "titularidade": row.get("Titularidade", ""),
             "status": row.get("Status", ""),
             "sexo": row.get("Sexo", ""),
-            "idade": int(row.get("Idade", 0)),
+            "idade": int(row["Idade"]) if pd.notna(row["Idade"]) else 0,
             "plano": row.get("Plano", ""),
             "subfatura": row.get("SubFatura", ""),
             "potencial_diabetico": row.get("Potencial  Diabético", ""),

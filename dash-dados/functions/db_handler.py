@@ -1,4 +1,5 @@
 import sqlite3
+import pandas as pd
 from datetime import datetime
 
 # Caminho do banco de dados
@@ -54,10 +55,16 @@ def criar_banco():
 
 def inserir_dados(dados_pacientes, dados_valores):
     conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
     paciente_id_map = {}
     for paciente in dados_pacientes:
+        #converter campos Timestamp´
+        for campo in ["periodo_inicio", "periodo_fim", "data_upload"]:
+            if isinstance(paciente[campo], pd.Timestamp):
+                paciente[campo] = paciente[campo].date()
+
         id_ext = paciente["id_externo"]
 
         # Verifica se já existe
@@ -65,24 +72,31 @@ def inserir_dados(dados_pacientes, dados_valores):
         res = cursor.fetchone()
 
         if res:
-            paciente_id = res[0]
+            paciente_id = res["id"]
         else:
             campos = list(paciente.keys())
             valores = [paciente[c] for c in campos]
             cursor.execute(f"INSERT INTO pacientes ({', '.join(campos)}) VALUES ({', '.join(['?']*len(campos))})", valores)
+            
             paciente_id = cursor.lastrowid
 
         paciente_id_map[id_ext] = paciente_id
 
-    # Inserir valores mensais
     for item in dados_valores:
-        paciente_id = paciente_id_map.get(item["paciente_id_externo"])
+        paciente_id - paciente_id_map.get(item["paciente_id_externo"])
         if not paciente_id:
             continue
-        cursor.execute('''
+
+        cursor.execute(
+
+            ''' 
             INSERT INTO valores_mensais (paciente_id, data_referencia, valor, arquivo_origem)
             VALUES (?, ?, ?, ?)
-        ''', (paciente_id, item["data_referencia"], item["valor"], item["arquivo_origem"]))
+            ''',
+            (paciente_id, item["data_referencia"], item["valor"], item["arquivo_origem"])
+
+
+        )
 
     conn.commit()
     conn.close()
