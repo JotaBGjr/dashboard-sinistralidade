@@ -1,3 +1,4 @@
+import streamlit as st
 import hashlib
 
 usuarios = {
@@ -6,7 +7,7 @@ usuarios = {
 }
 
 def tela_login():
-    st.title(" Tela de Login")
+    st.title("🔐 Tela de Login")
     usuario = st.text_input("Usuário")
     senha = st.text_input("Senha", type="password")
     senha_hash = hashlib.sha256(senha.encode()).hexdigest()
