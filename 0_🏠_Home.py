@@ -5,9 +5,9 @@ from datetime import datetime
 from functions.verifica_pastas import gerar_relatorio_pastas, caminhos
 from dateutil.relativedelta import relativedelta
 import base64
-
-from login import tela_login
 st.set_page_config(page_title="Painel Geral", layout="wide")
+from login import tela_login
+
 # Inicializa a sessão de login se ainda não estiver setada
 if "login_realizado" not in st.session_state:
     st.session_state.login_realizado = False
