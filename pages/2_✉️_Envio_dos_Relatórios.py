@@ -9,9 +9,6 @@ import base64
 
 from login import tela_login
 
-if "login_realizado" not in st.session_state or not st.session_state.login_realizado:
-    tela_login()
-    st.stop()
 
 
 st.title("✉️ Gestão de Envios")
