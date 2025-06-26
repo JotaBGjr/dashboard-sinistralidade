@@ -7,7 +7,7 @@ st.set_page_config(page_title="Login", layout="centered")
 
 authenticator = tela_login()
 
-nome, autenticado, usuario = authenticator.login("Login", "main")
+nome, autenticado, usuario = authenticator.login("Login", location="main")
 
 if autenticado:
     st.success(f"Bem-vindo, {nome}!")
