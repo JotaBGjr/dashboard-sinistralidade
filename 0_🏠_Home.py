@@ -1,6 +1,7 @@
 # home.py
 
 import streamlit as st
+import streamlit_authenticator as stauth
 from login import tela_login
 
 st.set_page_config(page_title="Login", layout="centered")
