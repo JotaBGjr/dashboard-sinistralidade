@@ -1,4 +1,10 @@
 import streamlit as st
+from auth import authenticator
+
+if "login_realizado" not in st.session_state or not st.session_state["login_realizado"]:
+    st.warning("Você precisa estar logado para acessar esta página.")
+    st.swith_page("login.py")
+    
 st.set_page_config(page_title="Painel Geral", layout="wide")
 
 import pandas as pd
@@ -7,15 +13,6 @@ from datetime import datetime
 from functions.verifica_pastas import gerar_relatorio_pastas, caminhos
 from dateutil.relativedelta import relativedelta
 import base64
-
-
-from login import tela_login
-
-if "login_realizado" not in st.session_state or not st.session_state.login_realizado:
-    tela_login()
-    st.stop()
-
-
 
 st.title("📊 Painel de Status Geral")
 
