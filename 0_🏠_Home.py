@@ -5,7 +5,7 @@ from login import tela_login
 
 st.set_page_config(page_title="Login", layout="centered")
 
-authenticator = configurar_autenticador()
+authenticator = tela_login()
 
 nome, autenticado, usuario = authenticator.login("Login", "main")
 
