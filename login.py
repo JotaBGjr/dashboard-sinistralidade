@@ -1,22 +1,18 @@
 import streamlit as st
-import hashlib
+from auth import authenticator
 
-usuarios = {
-    "jorge": hashlib.sha256("1234".encode()).hexdigest(),
-    "admin": hashlib.sha256("admin".encode()).hexdigest()
-}
+st.set_page_config(page_title = "Login", layout="centered")
 
-def tela_login():
-    st.title("🔐 Tela de Login")
-    usuario = st.text_input("Usuário")
-    senha = st.text_input("Senha", type="password")
-    senha_hash = hashlib.sha256(senha.encode()).hexdigest()
+name, auth_status, username = authenticator.login("Login", "main")
 
-    if st.button("Entrar"):
-        if usuario in usuarios and usuarios[usuario] == senha_hash:
-            st.session_state.login_realizado = True
-            st.session_state.usuario = usuario
-            st.success("Login realizado com sucesso!")
-            st.rerun()
-        else:
-            st.error("Usuário ou senha incorretos.")
+if auth_status:
+    st.session_state["login_realizado"] = True
+    st.session_state["usuario"] = username
+    st.success(f"Bem-vindo, {name}!")
+    st.switch_page("home.py") # redireciona para home
+
+elif auth_status == False:
+    st.error("Usuário ou senha incorretos.")
+else:
+    st.warning("Por favor, faça login.")
+
