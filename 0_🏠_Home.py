@@ -5,13 +5,11 @@ from login import tela_login
 
 st.set_page_config(page_title="Login", layout="centered")
 
-authenticator = tela_login()
-
-nome, autenticado, usuario = authenticator.login("Login", location="main")
+nome, autenticado, usuario = tela_login()
 
 if autenticado:
     st.success(f"Bem-vindo, {nome}!")
-    st.switch_page("pages/outras_páginas.py")
+    st.switch_page("pages/0_🏠_Gerencial.py")
 
 elif autenticado is False:
     st.error("Usuário ou senha incorretos.")
