@@ -8,22 +8,12 @@ from functions.verifica_pastas import gerar_relatorio_pastas, caminhos
 from dateutil.relativedelta import relativedelta
 import base64
 
+
 from login import tela_login
 
-# Inicializa a sessão de login se ainda não estiver setada
-if "login_realizado" not in st.session_state:
-    st.session_state.login_realizado = False
-
-# Verifica se está logado
-if not st.session_state.login_realizado:
+if "login_realizado" not in st.session_state or not st.session_state.login_realizado:
     tela_login()
-else:
-    st.title("🏠 Página Inicial")
-    st.write(f"Bem-vindo, {st.session_state.usuario}!")
-    if st.button("Sair"):
-        st.session_state.login_realizado = False
-        st.session_state.usuario = ""
-        st.experimental_rerun()
+    st.stop()
 
 
 
