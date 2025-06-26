@@ -2,9 +2,6 @@ import streamlit as st
 import sys
 import os
 
-if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
-    st.warning("⚠️ Você precisa estar logado para acessar esta página.")
-    st.stop()  # Interrompe a execução
 
 # Adiciona dash-dados ao sys.path
 DASH_DADOS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "dash-dados"))

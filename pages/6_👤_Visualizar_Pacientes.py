@@ -1,20 +1,8 @@
 import streamlit as st
-from auth import authenticator
 import sqlite3
 import pandas as pd
 import plotly.express as px
 
-
-if "login_realizado" not in st.session_state or not st.session_state["login_realizado"]:
-    st.warning("Você precisa estar logado para acessar esta página.")
-    st.swith_page("login.py")
-
-
-
-if st.button("Sair"):
-    authenticator.logout("Logout", "main")
-    st.session_state.clear()
-    st.switch_page("login.py")
     
 
 DB_PATH = "dash-dados/db/pacientes.db"

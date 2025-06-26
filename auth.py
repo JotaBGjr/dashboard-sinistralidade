@@ -12,6 +12,6 @@ authenticator = stauth.Authenticate(
   usernames=users,
   passwords=hashed_passwords,
   cookie_name="app_login",
-  key="chave_secreta_segura"
+  key="chave_secreta_segura",
   cookie_expiry_days=1,
 )

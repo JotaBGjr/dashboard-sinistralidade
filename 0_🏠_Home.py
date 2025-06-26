@@ -1,328 +1,106 @@
 import streamlit as st
-from auth import authenticator
-
-if "login_realizado" not in st.session_state or not st.session_state["login_realizado"]:
-    st.warning("Você precisa estar logado para acessar esta página.")
-    st.swith_page("login.py")
-    
-st.set_page_config(page_title="Painel Geral", layout="wide")
-
-import pandas as pd
+import streamlit_authenticator as stauth
 import os
-from datetime import datetime
-from functions.verifica_pastas import gerar_relatorio_pastas, caminhos
-from dateutil.relativedelta import relativedelta
 import base64
 
-st.title("📊 Painel de Status Geral")
-
-LOCAL_ENV = os.path.exists("C:/JORGE_V1")
-
-prazos_etapas = {
-    "Planilha de Reavaliação":{"prazo": "Dia 03"},
-
-    "Amil - Bi Zetta":{"prazo": "Dia 15"},
-    "Amil - Envio Relatórios":{"prazo": "Dia 15"},
-    "Amil - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
-
-
-    "Bradesco - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 05"},
-    "Bradesco - Base Aberta de Sinistro":{"prazo": "Dia 05"},
-    "Bradesco - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 05"},
-    "Bradesco - Bi Zetta":{"prazo": "Dia 10"},
-    "Bradesco - Envio Relatório de Sinistralidade":{"prazo": "Dia 15"},
-    "Bradesco - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 16"},
-
-
-    "Seguros Unimed - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 05"},
-    "Seguros Unimed - Base Aberta de Sinistro":{"prazo": "Dia 05"},
-    "Seguros Unimed - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 05"},
-    "Seguros Unimed - Bi Zetta":{"prazo": "Dia 10"}, 
-    "Seguros Unimed - Envio Relatório de Sinistralidade":{"prazo": "Dia 16"},
-    "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 15"},
-
-    "Bradesco (manual) - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 05"},
-    "Bradesco (manual) - Produção do Relatório":{"prazo": "Dia 10"},
-    "Bradesco (Manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 10"},
-    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 11"},
-
-    "SulAmérica - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 13"},
-    "SulAmérica - Base Aberta de Sinistro":{"prazo": "Dia 13"},
-    "SulAmérica - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 13"},
-    "SulAmérica - Bi Zetta":{"prazo": "Dia 18"},
-    "SulAmérica - Envio Relatório de Sinistralidade":{"prazo": "Dia 27"},
-    "SulAmérica - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
-
-    
-    "Unimed Nacional - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 08"},
-    "Unimed Nacional - Base Aberta de Sinistro":{"prazo": "Dia 08"},
-    "Unimed Nacional - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 08"},
-    "Unimed Nacional - Bi Zetta":{"prazo": "Dia 13"},
-    "Unimed Nacional - Envio Relatório de Sinistralidade":{"prazo": "Dia 20"},
-    "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 21"},
-
-    
-    "Porto Seguro - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
-    "Porto Seguro - Base Aberta de Sinistro":{"prazo": "Dia 15"},
-    "Porto Seguro - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Porto Seguro - Bi Zetta":{"prazo": "Dia 20"},
-    "Porto Seguro - Envio Relatório de Sinistralidade":{"prazo": "Dia 27"},
-    "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
-    
-    "Omint - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 15"},
-    "Omint - Base Aberta de Sinistro":{"prazo": "Dia 15"},
-    "Omint - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Omint - Bi Zetta":{"prazo": "Dia 20"},
-    "Omint - Envio Relatório de Sinistralidade":{"prazo": "Dia 27"},
-    "Omint - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
-
-    "Omint (manual) - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 15"},
-    "Omint (manual) - Produção do Relatório":{"prazo": "Dia 18"},
-    "Omint (manual) - Envio Relatório de Sinistralidade":{"prazo": "Dia 20"},
-    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 21"},
-   
-    "Hapvida - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 20"},
-    "Hapvida - Base Aberta de Sinistro":{"prazo": "Dia 20"},
-    "Hapvida - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 20"},
-    "Hapvida - Bi Zetta":{"prazo": "Dia 25"},
-    "Hapvida - Envio Relatório de Sinistralidade":{"prazo": "Dia 28"},
-    "Hapvida - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 29"},
-    
-
-    "Plena Saúde - Arquivo de Cadastro/Faturamento":{"prazo": "Dia 20"},
-    "Plena Saúde - Base Aberta de Sinistro":{"prazo": "Dia 20"},
-    "Plena Saúde - Relatório Gerencial de Sinistralidade":{"prazo": "Dia 20"},
-    "Plena Saúde - Bi Zetta":{"prazo": "Dia 25"},
-    "Plena Saúde - Envio Relatório de Sinistralidade":{"prazo": "Dia 28"},
-    "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade":{"prazo": "Dia 28"},
-    
-}
-
-operadoras_competencia = {
-    "Reavaliação": 0,
-    "Amil": -2,
-    "Bradesco": -1,
-    "Seguros Unimed": -1,
-    "SulAmérica": -1,
-    "Unimed Nacional": -1,
-    "Porto Seguro": -1,
-    "Omint": -1,
-    "Hapvida": -2,
-    "Plena Saúde": -2,
-}
-
-def identificar_competencia(etapa_nome):
-    etapa_nome_lower = etapa_nome.lower()
-    for operadora, ajuste_meses in operadoras_competencia.items():
-        if operadora.lower() in etapa_nome_lower:
-            competencia = datetime.today() + relativedelta(months=ajuste_meses)
-            return competencia.strftime("%m/%Y")
-    return "N/A"  # caso não encontre operadora
-
-
-
-
-
-
-def carregar_df():
-    return gerar_relatorio_pastas(caminhos) if LOCAL_ENV else pd.read_csv("dash-dados/csv/home.csv")
-
-def preparar_df(df):
-    df["Total de Pastas"] = pd.to_numeric(df["Total de Pastas"], errors="coerce")
-    df["Pastas com Arquivo"] = pd.to_numeric(df["Pastas com Arquivo"], errors="coerce")
-    df["Diferença"] = pd.to_numeric(df["Diferença"], errors="coerce")
-    return df
-cache_atualizacao = {}
-def ultima_data_arquivo(pasta):
-    if not LOCAL_ENV or not os.path.exists(pasta):
-        return "Indisponível"
-    try:
-        datas = [os.path.getmtime(os.path.join(pasta, f)) for f in os.listdir(pasta) if os.path.isfile(os.path.join(pasta, f))]
-        return datetime.fromtimestamp(max(datas)).strftime('%d/%m/%y') if datas else "Sem arquivos"
-    except Exception:
-        return "Erro"
-
-def esta_perto_do_prazo(prazo_str, dias_antecedencia=3):
-    try:
-        dia_prazo = int(prazo_str.split(" ")[1])
-        hoje = datetime.today().day
-        return 0 <= (dia_prazo - hoje) <= dias_antecedencia
-    except:
-        return False
-
-def img_base64(caminho):
-    with open(caminho, "rb") as f:
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
         data = f.read()
-        encoded = base64.b64encode(data).decode()
-        return f"data:image/jpeg;base64,{encoded}"
+        return base64.b64encode(data).decode()
 
-def img_operadora(etapa_nome):
-    imagens = {
-        "Bradesco": "pages/imagens/imagem_bradesco.jpg",
-        "Omint": "pages/imagens/imagem_omint.jpg",
-        "Hapvida": "pages/imagens/imagem_hapvida.jpg",
-        "Plena": "pages/imagens/imagem_plenasaude.jpg",
-        "Amil": "pages/imagens/imagem_amil.jpg",
-        "Porto":"pages/imagens/imagem_portoseguro.jpg",
-        "SulAmérica": "pages/imagens/imagem_sulamerica.jpg",
-        "Seguros Unimed": "pages/imagens/imagem_segurosunimed.jpg",
-        "Nacional": "pages/imagens/imagem_unimednacional.jpg"
-        # Adicione outras operadoras aqui
+# CSS
+    st.markdown(f"""
+        <style>
+            html, body, .stApp {{
+                background-color: black !important;
+            }}
+
+            #MainMenu, header, footer {{visibility: hidden;}}
+
+            .logo-img {{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 700px;
+                margin-top: 1px;
+                margin-bottom: 3px;
+            }}
+
+            .login-box {{
+                background-color: rgba(0, 0, 0, 0.6);
+                padding: 3rem;
+                border-radius: 1rem;
+                text-align: center;
+                color: white;
+                max-width: 400px;
+                margin: auto;
+            }}
+
+            input {{
+                color: black !important;
+            }}
+        </style>
+    """, unsafe_allow_html=True)
+
+    # Imagem
+    st.markdown(
+        f'<img class="logo-img" src="data:image/png;base64,{image_base64}">',
+        unsafe_allow_html=True
+    )
+
+
+
+
+
+
+def tela_login():
+    # Configuração de hash e imagem
+    hashed_password = '$2b$12$T5NFaY4UIFtb03wtXKryNu6wFlun6pQt4L/aKxa2eidzixAaQ1tLi'
+    image_path = os.path.join(os.getcwd(), "pages", "imagens", "imagem_aggrega.png")
+    image_base64 = get_base64_of_bin_file(image_path)
+
+    
+
+    # Configuração do authenticator
+    config = {
+        'credentials': {
+            'usernames': {
+                'usuario1': {
+                    'name': 'Usuário 1',
+                    'password': hashed_password
+                }
+            }
+        },
+        'cookie': {
+            'name': 'teste_cookie',
+            'key': 'super_chave_teste',
+            'expiry_days': 1
+        },
+        'preauthorized': {
+            'emails': []
+        }
     }
-    for op in imagens:
-        if op.lower() in etapa_nome.lower():
-            caminho = imagens[op]
-            if os.path.exists(caminho):
-                return img_base64(caminho)
-    return None  # Retorna None se não encontrar
 
-def cor_operadora(etapa_nome):
-    cores = {
-        "Amil": "#fffff",
-        "Bradesco": "#fffff",
-        "Omint": "#fffff",
-        "SulAmérica": "#fffff",
-        "Hapvida": "#fffff",
-        "Plena Saúde": "#ffffff",
-        "Porto Seguro": "#fffff",
-        "Seguros Unimed": "#fffff",
-        "Unimed Nacional": "#fffff"
-    }
+    authenticator = stauth.Authenticate(
+        config['credentials'],
+        config['cookie']['name'],
+        config['cookie']['key'],
+        config['cookie']['expiry_days']
+    )
 
-    for op in cores:
-        if op.lower() in etapa_nome.lower():
-            return cores[op]
-    return "#f0f0f0"  # cor padrão caso nenhuma operadora seja encontrada    
+    login_result = authenticator.login("Login", "main")
 
+    if login_result is not None:
+        name, auth_status, username = login_result
 
-
-def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor_barra, status, destaque=False):
-    cor_status = {
-    "Atrasado": "#f44336",       # vermelho
-    "Em andamento": "#ff9800",   # amarelo
-    "Concluído": "#4caf50"       # verde
-    }.get(status, "#9e9e9e")
-
-    imagem_base64 = img_operadora(etapa)
-    imagem_html = f"<img src='{imagem_base64}' style='height: 30px; float: right;'/>" if imagem_base64 else ""
-    return f"""
-        <div style=' background: {background_color}; border: 1px solid #ccc; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'>
-            <h4 style='margin: 0 0 12px;'>{etapa} {imagem_html}</h4>
-            <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
-            <div style='margin-bottom: 8px;'>Status: <span style='color: {cor_status}; font-weight: bold;'>{status}</span></div>
-            <div style='background-color: {background_color}; border-radius: 8px; overflow: hidden; height: 22px;'>
-                <div style='width: {progresso}%; background-color: {cor_barra}; height: 100%; text-align: center;
-                            color: white; font-weight: bold;'>{progresso}%</div>
-            </div>
-        </div>
-    """
-
-# Carregar dados
-df = carregar_df()
-df = preparar_df(df)
-
-# Atualização manual
-if st.button("Atualizar Status"):
-    df = carregar_df()
-    df = preparar_df(df)
-    st.success("Dados atualizados!")
-
-# Dividir colunas para visualização
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.metric("Total de Etapas", value=df["Etapa"].nunique())
-
-with col2:
-    etapas_concluidas = df[df["Diferença"] == 0]["Etapa"].nunique()
-    st.metric("Etapas Concluídas", value=etapas_concluidas)
-
-with col3:
-    progresso_total = int((etapas_concluidas / df["Etapa"].nunique()) * 100)
-    st.metric("Progresso Geral", value=f"{progresso_total}%")
-    st.progress(progresso_total / 100)
-
-# Exibir progresso por etapa
-st.markdown("### Progresso por Atividade")
-etapas_unicos = df["Etapa"].unique()
-
-blocos_html_lista = []
-
-for etapa in etapas_unicos:
-    
-    prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
-    proximo_do_prazo = esta_perto_do_prazo(prazo) and status != "Concluído"
-
-    if proximo_do_prazo:
-        background_color = "#fff9c4"  # amarelo claro
-        borda_cor = "#f57c00"         # laranja escuro chamativo
+        if auth_status:
+            st.success(f"Bem-vindo(a), {name}!")
+        elif auth_status is False:
+            st.error("Usuário ou senha incorretos.")
+        else:
+            st.info("Por favor, faça login.")
+        
+        return name, auth_status, username
     else:
-        background_color = cor_operadora(etapa)
-        borda_cor = "#ccc"            # borda padrão
-    
-    df_etapa = df[df["Etapa"] == etapa]
-    total = df_etapa["Total de Pastas"].sum()
-    com_arquivo = df_etapa["Pastas com Arquivo"].sum()
-    progresso = int((com_arquivo / total) * 100) if total else 0
-
-    cor = "#4CAF50" if progresso == 100 else "#2196F3" if progresso >= 50 else "#FF9800"
-
-    prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
-    competencia = identificar_competencia(etapa)
-    competencia_formatada = competencia.replace("/", "-") if competencia != "N/A" else competencia
-
-    status=""
-    if progresso == 100:
-        status = "Concluído"
-    elif prazo != "N/A":
-        try:
-            dia_prazo  = int(prazo.split(" ")[1])
-            hoje = datetime.today().day
-            status = "Atrasado" if hoje > dia_prazo else "Em andamento"
-        except Exception as e:
-                status = "Pendente"
-    else:
-        status = "Pendente"
-
-    if LOCAL_ENV:
-        caminhos_pasta = [caminhos.get(etapa, "") for et in df_etapa["Etapa"]]
-        cache_atualizacao = {}
-        for pasta in set(caminhos_pasta):
-            if pasta and pasta in cache_atualizacao:
-                cache_atualizacao[pasta] = ultima_data_arquivo(pasta)
-        valores = [cache_atualizacao.get(p, "Indisponível") for p in caminhos_pasta if p]
-        valores_validos = [v for v in valores if v not in ["Indisponível", "Erro", "Sem arquivos"]]
-        ultima_atualizacao = valores_validos[0] if valores_validos else "Indisponível"
-    else:
-        valores = df_etapa["Últ. Atualização"].dropna().tolist()
-        ultima_atualizacao = valores[0] if valores else "Indisponível"
-
-    #atraso_html = "<span style='color: red; font-weight: bold;'> ⚠️ Atrasado </span>" if atrasado else ""
-    
-    bloco_html = gerar_bloco_html(etapa , progresso, competencia_formatada, prazo, ultima_atualizacao, cor, status, destaque=proximo_do_prazo)
-    blocos_html_lista.append(bloco_html)    
-
-
-
-# Exibir todos os blocos de uma vez
-st.components.v1.html(
-    "<div style='max-height: 720px; overflow-y: auto; padding-right: 10px;'>" +
-    "".join(blocos_html_lista) +
-    "</div>",
-    height=740
-)
-
-st.markdown("###  Resumo")
-
-# Verifique as colunas disponíveis (apagar depois de verificar)
-#st.write("Colunas disponíveis:", df.columns.tolist())
-
-# Use nomes corretos
-colunas_resumo = ["Etapa", "Pastas Vazias","Pastas c/ Arquivos"]
-
-# Garantir que só usaremos colunas que existem
-colunas_existentes = [col for col in colunas_resumo if col in df.columns]
-
-df_resumo = df[colunas_existentes].groupby("Etapa", as_index=False).sum()
-
-st.dataframe(df_resumo, use_container_width=True)
+        st.info("Por favor, faça login.")
+        return None, None, None

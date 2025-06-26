@@ -6,3 +6,6 @@ headless = true
 
 [client]
 showSidebarNavigation = true
+
+[pages]
+default = "login.py"
