@@ -1,6 +1,6 @@
 # login.py
 
-import streamlit_authenticator as sauth
+import streamlit_authenticator as stauth
 
 def configurar_autenticador():
     nomes = ["Jorge"]
