@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(page_title="Painel Geral", layout="wide")
 import pandas as pd
 import os
 from datetime import datetime
@@ -6,11 +7,13 @@ from functions.verifica_pastas import gerar_relatorio_pastas, caminhos_3
 from dateutil.relativedelta import relativedelta
 import base64
 
-if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
-    st.warning("⚠️ Você precisa estar logado para acessar esta página.")
-    st.stop()  # Interrompe a execução
+from login import tela_login
 
-st.set_page_config(page_title="Painel Geral", layout="wide")
+if "login_realizado" not in st.session_state or not st.session_state.login_realizado:
+    tela_login()
+    st.stop()
+
+
 st.title("✉️ Gestão de Envios")
 
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")
