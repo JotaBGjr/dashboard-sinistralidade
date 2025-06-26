@@ -4,8 +4,6 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from teste_login import tela_login
-
 
 st.set_page_config(page_title="Painel Geral", layout="wide")
 
