@@ -88,6 +88,7 @@ def tela_login():
 
     authenticator = configurar_autenticacao()
     login_result = authenticator.login("Login", location="sidebar")
+    st.write("DEBUG login_result:", login_result)
 
     if login_result is not None:
         name, auth_status, username = login_result
