@@ -6,10 +6,11 @@ from functions.verifica_pastas import gerar_relatorio_pastas, caminhos_2
 from dateutil.relativedelta import relativedelta
 import base64
 
-if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
-    st.warning("⚠️ Você precisa estar logado para acessar esta página.")
-    st.stop()  # Interrompe a execução
+from login import tela_login
 
+if "login_realizado" not in st.session_state or not st.session_state.login_realizado:
+    tela_login()
+    st.stop()
 st.set_page_config(page_title="Painel Geral", layout="wide")
 st.title("📊 Visão Geral dos Relatórios no BI")
 
