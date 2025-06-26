@@ -7,7 +7,7 @@ def configurar_autenticador():
     usernames = ["jorge"]
     senhas = ["Aggrega@2025"]  # senha em texto
 
-    hashed_senhas = stauth.Hasher(senhas).generate()
+    hashed_senhas = ['$2b$12$KXZAwZ/boGRQ69qph0f5h.azXRF.7ryQrJfD2vcWmj/VndmZ56B9a']
 
     authenticator = stauth.Authenticate(
         nomes,
