@@ -6,17 +6,22 @@ from functions.verifica_pastas import gerar_relatorio_pastas, caminhos
 from dateutil.relativedelta import relativedelta
 import base64
 
-def app_principal():
-    st.sidebar.success(f"Logado como: {st.session_state.get('usuario', '')}")
-    st.sidebar.button("Sair", on_click=logout)
+from login import tela_login
 
-    st.title("📈 Bem-vindo ao Dashboard")
-    st.write("Conteúdo principal aqui.")
-
-def logout():
+# Inicializa a sessão de login se ainda não estiver setada
+if "login_realizado" not in st.session_state:
     st.session_state.login_realizado = False
-    st.session_state.usuario = ""
-    st.experimental_rerun()
+
+# Verifica se está logado
+if not st.session_state.login_realizado:
+    tela_login()
+else:
+    st.title("🏠 Página Inicial")
+    st.write(f"Bem-vindo, {st.session_state.usuario}!")
+    if st.button("Sair"):
+        st.session_state.login_realizado = False
+        st.session_state.usuario = ""
+        st.experimental_rerun()
 
 
 st.set_page_config(page_title="Painel Geral", layout="wide")
