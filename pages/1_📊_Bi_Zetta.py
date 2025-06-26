@@ -12,7 +12,7 @@ from login import tela_login
 if "login_realizado" not in st.session_state or not st.session_state.login_realizado:
     tela_login()
     st.stop()
-st.set_page_config(page_title="Painel Geral", layout="wide")
+
 st.title("📊 Visão Geral dos Relatórios no BI")
 
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")
