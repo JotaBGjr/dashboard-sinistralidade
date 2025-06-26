@@ -1,5 +1,4 @@
 import streamlit as st
-st.set_page_config(page_title="Login", layout="centered")
 import streamlit_authenticator as stauth
 import os
 import base64
