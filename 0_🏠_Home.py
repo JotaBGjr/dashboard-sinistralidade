@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 import base64
 
 from login import tela_login
-
+st.set_page_config(page_title="Painel Geral", layout="wide")
 # Inicializa a sessão de login se ainda não estiver setada
 if "login_realizado" not in st.session_state:
     st.session_state.login_realizado = False
@@ -24,7 +24,7 @@ else:
         st.experimental_rerun()
 
 
-st.set_page_config(page_title="Painel Geral", layout="wide")
+
 st.title("📊 Painel de Status Geral")
 
 LOCAL_ENV = os.path.exists("C:/JORGE_V1")
