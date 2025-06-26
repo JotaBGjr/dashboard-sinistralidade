@@ -1,38 +1,17 @@
 import streamlit as st
 
-# Usuário e senha fixos (simples e seguro para uso pessoal)
-USUARIO_CORRETO = "admin"
-SENHA_CORRETA = "1234"
+# Dicionário de usuários válidos
+usuarios = {"jorge": "1234", "admin": "admin"}
 
-def login():
-    st.title(" Login")
-
-    # Campos de entrada
+def tela_login():
+    st.title("🔐 Tela de Login")
     usuario = st.text_input("Usuário")
     senha = st.text_input("Senha", type="password")
-
-    # Botão de login
     if st.button("Entrar"):
-        if usuario == USUARIO_CORRETO and senha == SENHA_CORRETA:
-            st.success(" Login realizado com sucesso!")
-            st.session_state["autenticado"] = True
+        if usuario in usuarios and usuarios[usuario] == senha:
+            st.session_state.login_realizado = True
+            st.session_state.usuario = usuario
+            st.success("Login realizado com sucesso!")
             st.experimental_rerun()
         else:
-            st.error(" Usuário ou senha incorretos")
-
-# Função principal do app (conteúdo após login)
-def app_principal():
-    st.title(" Dashboard da Sinistralidade")
-    st.write("Bem-vindo ao sistema!")
-    if st.button("Sair"):
-        st.session_state["autenticado"] = False
-        st.experimental_rerun()
-
-# Roteamento com sessão
-if "autenticado" not in st.session_state:
-    st.session_state["autenticado"] = False
-
-if st.session_state["autenticado"]:
-    app_principal()
-else:
-    login()
+            st.error("Usuário ou senha incorretos.")
