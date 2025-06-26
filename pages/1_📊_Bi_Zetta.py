@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(page_title="Painel Geral", layout="wide")
 import pandas as pd
 import os
 from datetime import datetime
@@ -7,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 import base64
 
 from login import tela_login
-st.set_page_config(page_title="Painel Geral", layout="wide")
+
 if "login_realizado" not in st.session_state or not st.session_state.login_realizado:
     tela_login()
     st.stop()
