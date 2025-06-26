@@ -1,5 +1,6 @@
-st.set_page_config(page_title="Painel Geral", layout="wide")
 import streamlit as st
+st.set_page_config(page_title="Painel Geral", layout="wide")
+
 import pandas as pd
 import os
 from datetime import datetime
