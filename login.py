@@ -1,15 +1,15 @@
 # login.py
 
-import streamlit_authenticator as auth
+import streamlit_authenticator as sauth
 
 def configurar_autenticador():
     nomes = ["Jorge"]
     usernames = ["jorge"]
     senhas = ["Aggrega@2025"]  # senha em texto
 
-    hashed_senhas = auth.Hasher(senhas).generate()
+    hashed_senhas = sauth.Hasher(senhas).generate()
 
-    authenticator = auth.Authenticate(
+    authenticator = sauth.Authenticate(
         nomes,
         usernames,
         hashed_senhas,
