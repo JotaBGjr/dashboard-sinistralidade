@@ -3,7 +3,7 @@ import sqlite3
 import pandas as pd
 import plotly.express as px
 
-bfdbdfbdbdbdfbdsbs    
+==================== EM MANUTENÇÃO ====================== CONTATE O DESENVOLVEDOR 
 
 DB_PATH = "dash-dados/db/pacientes.db"
 

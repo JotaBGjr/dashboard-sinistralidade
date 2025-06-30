@@ -72,6 +72,13 @@ def ultima_data_arquivo(pasta):
         return datetime.fromtimestamp(max(datas)).strftime('%d/%m/%y') if datas else "Sem arquivos"
     except Exception:
         return "Erro"
+def esta_perto_do_prazo(prazo_str, dias_antecedencia=3):
+    try:
+        dia_prazo = int(prazo_str.split(" ")[1])
+        hoje = datetime.today().day
+        return 0 <= (dia_prazo - hoje) <= dias_antecedencia
+    except:
+        return False
 
 def img_base64(caminho):
     with open(caminho, "rb") as f:
@@ -100,16 +107,22 @@ def img_operadora(etapa_nome):
     return None  # Retorna None se não encontrar
 
 def cor_operadora(etapa_nome):
-    for op in operadoras_competencia:
+    cores = {
+        "Amil": "#fffff",
+        "Bradesco": "#fffff",
+        "Omint": "#fffff",
+        "SulAmérica": "#fffff",
+        "Hapvida": "#fffff",
+        "Plena Saúde": "#ffffff",
+        "Porto Seguro": "#fffff",
+        "Seguros Unimed": "#fffff",
+        "Unimed Nacional": "#fffff"
+    }    
+
+    for op in cores:
         if op.lower() in etapa_nome.lower():
-            cores = {
-                "Amil": "#fffff", "Bradesco": "#fffff", "Omint": "#fffff",
-                "SulAmérica": "#fffff", "Hapvida": "#fffff", "Unimed": "#fffff"
-            }
-            return cores.get(op, "#f0f0f0")
-    return "#f0f0f0"    
-
-
+            return cores[op]
+    return "#f0f0f0"  # cor padrão caso nenhuma operadora seja encontrada   
 
 def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atualizacao, cor_barra, status):
     cor_status = {
@@ -125,7 +138,7 @@ def gerar_bloco_html(etapa, progresso, competencia_formatada, prazo, ultima_atua
             <h4 style='margin: 0 0 12px;'>{etapa} {imagem_html}</h4>
             <div style='margin-bottom: 8px;'>Competência: <b>{competencia_formatada}</b> | Prazo: <b>{prazo}</b> | Últ. Atualização: <b>{ultima_atualizacao}</b></div>
             <div style='margin-bottom: 8px;'>Status: <span style='color: {cor_status}; font-weight: bold;'>{status}</span></div>
-            <div style='background-color: #eee; border-radius: 8px; overflow: hidden; height: 22px;'>
+            <div style='background-color: {background_color}; border-radius: 8px; overflow: hidden; height: 22px;'>
                 <div style='width: {progresso}%; background-color: {cor_barra}; height: 100%; text-align: center;
                             color: white; font-weight: bold;'>{progresso}%</div>
             </div>
@@ -164,6 +177,16 @@ etapas_unicos = df["Etapa"].unique()
 blocos_html_lista = []
 
 for etapa in etapas_unicos:
+
+    prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
+    proximo_do_prazo = esta_perto_do_prazo(prazo) and status != "Concluído"
+
+    if proximo_do_prazo:
+        background_color = "#fff9c4"  # amarelo claro
+        borda_cor = "#f57c00"         # laranja escuro chamativo
+    else:
+        background_color = cor_operadora(etapa)
+        borda_cor = "#ccc"            # borda padrão
     
     df_etapa = df[df["Etapa"] == etapa]
     total = df_etapa["Total de Pastas"].sum()
