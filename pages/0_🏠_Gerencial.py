@@ -249,12 +249,7 @@ for etapa in etapas_unicos:
     prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
     
 
-    if proximo_do_prazo:
-        background_color = "#fff9c4"  # amarelo claro
-        borda_cor = "#f57c00"         # laranja escuro chamativo
-    else:
-        background_color = cor_operadora(etapa)
-        borda_cor = "#ccc"            # borda padrão
+    
     
     df_etapa = df[df["Etapa"] == etapa]
     total = df_etapa["Total de Pastas"].sum()
@@ -281,6 +276,12 @@ for etapa in etapas_unicos:
     else:
         status = "Pendente"
     proximo_do_prazo = esta_perto_do_prazo(prazo) and status != "Concluído"
+    if proximo_do_prazo:
+        background_color = "#fff9c4"  # amarelo claro
+        borda_cor = "#f57c00"         # laranja escuro chamativo
+    else:
+        background_color = cor_operadora(etapa)
+        borda_cor = "#ccc"            # borda padrão
 
     if LOCAL_ENV:
         caminhos_pasta = [caminhos.get(etapa, "") for et in df_etapa["Etapa"]]

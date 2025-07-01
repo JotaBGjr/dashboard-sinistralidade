@@ -191,12 +191,7 @@ for etapa in etapas_unicos:
     prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
     
 
-    if proximo_do_prazo:
-        background_color = "#fff9c4"
-        borda_cor = "#f57c00"
-    else:
-        background_color = cor_operadora(etapa)
-        borda_cor = "#ccc"
+    
 
     
     df_etapa = df[df["Etapa"] == etapa]
@@ -223,6 +218,12 @@ for etapa in etapas_unicos:
     else:
         status = "Pendente"
     proximo_do_prazo = esta_perto_do_prazo(prazo) and status != "Concluído"
+    if proximo_do_prazo:
+        background_color = "#fff9c4"
+        borda_cor = "#f57c00"
+    else:
+        background_color = cor_operadora(etapa)
+        borda_cor = "#ccc"
 
     if LOCAL_ENV:
         caminhos_2_pasta = [caminhos_2.get(etapa, "") for et in df_etapa["Etapa"]]
