@@ -33,7 +33,7 @@ def gerar_relatorio_pastas(caminhos):
  
     return df
 
-mes_ano = "05.2025"
+mes_ano = "06.2025"
 caminhos = {
     "Planilha de Reavaliação": rf"C:\JORGE_V1\Jorge\PLANILHA_REAVALIACAO_03",
 
