@@ -18,7 +18,7 @@ def apply_custom_styles():
     st.markdown("""
         <style>
             html, body, .stApp {
-                background-color: black !important;
+                background-color: white !important;
             }
 
             #MainMenu, header, footer {visibility: hidden;}

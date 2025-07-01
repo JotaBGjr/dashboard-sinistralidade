@@ -33,244 +33,244 @@ def gerar_relatorio_pastas(caminhos):
  
     return df
 
-
+mes_ano = "05.2025"
 caminhos = {
-    "Planilha de Reavaliação": r"C:\JORGE_V1\Jorge\PLANILHA_REAVALIACAO_03",
+    "Planilha de Reavaliação": rf"C:\JORGE_V1\Jorge\PLANILHA_REAVALIACAO_03",
 
-    "Amil - Bi Zetta": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO",
-    "Amil - Envio Relatórios": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_ENVIADOS",
-    "Amil - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_QUIVER",
-
-
-    "Bradesco - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\BASE_CADASTRO",
-    "Bradesco - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\BASE_SINISTRO",
-    "Bradesco - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\BASE_SINISTRALIDADE",
-    "Bradesco - Bi Zetta": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO",
-    "Bradesco - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_ENVIADOS",
-    "Bradesco - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_QUIVER",
+    "Amil - Bi Zetta": rf"C:\JORGE_V1\Jorge\03_15_AMIL\{mes_ano}\RELATORIO",
+    "Amil - Envio Relatórios": rf"C:\JORGE_V1\Jorge\03_15_AMIL\{mes_ano}\RELATORIO_ENVIADOS",
+    "Amil - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\03_15_AMIL\{mes_ano}\RELATORIO_QUIVER",
 
 
-    "Seguros Unimed - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\BASE_CADASTRO" ,
-    "Seguros Unimed - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO" ,
-    "Seguros Unimed - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\BASE_SINISTRALIDADE",
-    "Seguros Unimed - Bi Zetta": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO", 
-    "Seguros Unimed - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_ENVIADOS",
-    "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_QUIVER",
+    "Bradesco - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\BASE_CADASTRO",
+    "Bradesco - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\BASE_SINISTRO",
+    "Bradesco - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\BASE_SINISTRALIDADE",
+    "Bradesco - Bi Zetta": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\RELATORIO",
+    "Bradesco - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\RELATORIO_ENVIADOS",
+    "Bradesco - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\RELATORIO_QUIVER",
 
-    "Bradesco (manual) - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\BASE_SINISTRALIDADE",
-    "Bradesco (manual) - Produção do Relatório": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO",
-    "Bradesco (Manual) - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO_ENVIADOS",
-    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO_QUIVER",
 
-    "SulAmérica - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\BASE_CADASTRO" ,
-    "SulAmérica - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\BASE_SINISTRO" ,
-    "SulAmérica - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\BASE_SINISTRALIDADE",
-    "SulAmérica - Bi Zetta": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO",
-    "SulAmérica - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO_ENVIADOS",
-    "SulAmérica - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO_QUIVER",
+    "Seguros Unimed - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\BASE_CADASTRO" ,
+    "Seguros Unimed - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO" ,
+    "Seguros Unimed - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\BASE_SINISTRALIDADE",
+    "Seguros Unimed - Bi Zetta": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO", 
+    "Seguros Unimed - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO_ENVIADOS",
+    "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO_QUIVER",
 
-    
-    "Unimed Nacional - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\BASE_CADASTRO" ,
-    "Unimed Nacional - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\BASE_SINISTRO" ,
-    "Unimed Nacional - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\BASE_SINISTRALIDADE",
-    "Unimed Nacional - Bi Zetta": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO",
-    "Unimed Nacional - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO_ENVIADOS",
-    "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO_QUIVER",
+    "Bradesco (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\BASE_SINISTRALIDADE",
+    "Bradesco (manual) - Produção do Relatório": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO",
+    "Bradesco (Manual) - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO_ENVIADOS",
+    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO_QUIVER",
+
+    "SulAmérica - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_CADASTRO" ,
+    "SulAmérica - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_SINISTRO" ,
+    "SulAmérica - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_SINISTRALIDADE",
+    "SulAmérica - Bi Zetta": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\RELATORIO",
+    "SulAmérica - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\RELATORIO_ENVIADOS",
+    "SulAmérica - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\RELATORIO_QUIVER",
 
     
-    "Porto Seguro - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\BASE_CADASTRO" ,
-    "Porto Seguro - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\BASE_SINISTRO" ,
-    "Porto Seguro - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\BASE_SINISTRALIDADE",
-    "Porto Seguro - Bi Zetta": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO",
-    "Porto Seguro - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO_ENVIADOS",
-    "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO_QUIVER",
-    
-    "Omint - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\BASE_CADASTRO" ,
-    "Omint - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\BASE_SINISTRO" ,
-    "Omint - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\BASE_SINISTRALIDADE",
-    "Omint - Bi Zetta": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO",
-    "Omint - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO_ENVIADOS",
-    "Omint - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO_QUIVER",
+    "Unimed Nacional - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\BASE_CADASTRO" ,
+    "Unimed Nacional - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\BASE_SINISTRO" ,
+    "Unimed Nacional - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\BASE_SINISTRALIDADE",
+    "Unimed Nacional - Bi Zetta": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\RELATORIO",
+    "Unimed Nacional - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\RELATORIO_ENVIADOS",
+    "Unimed Nacional - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\RELATORIO_QUIVER",
 
-    "Omint (manual) - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\BASE_SINISTRALIDADE",
-    "Omint (manual) - Produção do Relatório": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO",
-    "Omint (manual) - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO_ENVIADOS",
-    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO_QUIVER",
+    
+    "Porto Seguro - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\BASE_CADASTRO" ,
+    "Porto Seguro - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\BASE_SINISTRO" ,
+    "Porto Seguro - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\BASE_SINISTRALIDADE",
+    "Porto Seguro - Bi Zetta": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\RELATORIO",
+    "Porto Seguro - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\RELATORIO_ENVIADOS",
+    "Porto Seguro - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\RELATORIO_QUIVER",
+    
+    "Omint - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\BASE_CADASTRO" ,
+    "Omint - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\BASE_SINISTRO" ,
+    "Omint - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\BASE_SINISTRALIDADE",
+    "Omint - Bi Zetta": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO",
+    "Omint - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO_ENVIADOS",
+    "Omint - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO_QUIVER",
+
+    "Omint (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\BASE_SINISTRALIDADE",
+    "Omint (manual) - Produção do Relatório": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO",
+    "Omint (manual) - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO_ENVIADOS",
+    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO_QUIVER",
    
-    "Hapvida - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\BASE_CADASTRO" ,
-    "Hapvida - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\BASE_SINISTRO" ,
-    "Hapvida - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\BASE_SINISTRALIDADE",
-    "Hapvida - Bi Zetta": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO",
-    "Hapvida - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO_ENVIADOS",
-    "Hapvida - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO_QUIVER",
+    #"Hapvida - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_CADASTRO" ,
+    "Hapvida - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_SINISTRO" ,
+    "Hapvida - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_SINISTRALIDADE",
+    "Hapvida - Bi Zetta": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\RELATORIO",
+    "Hapvida - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\RELATORIO_ENVIADOS",
+    "Hapvida - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\RELATORIO_QUIVER",
     
 
-    "Plena Saúde - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\BASE_CADASTRO" ,
-    "Plena Saúde - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\BASE_SINISTRO" ,
-    "Plena Saúde - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\BASE_SINISTRALIDADE",
-    "Plena Saúde - Bi Zetta": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO",
-    "Plena Saúde - Envio Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO_ENVIADOS",
-    "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO_QUIVER",
+    "Plena Saúde - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\BASE_CADASTRO" ,
+    "Plena Saúde - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\BASE_SINISTRO" ,
+    "Plena Saúde - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\BASE_SINISTRALIDADE",
+    "Plena Saúde - Bi Zetta": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\RELATORIO",
+    "Plena Saúde - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\RELATORIO_ENVIADOS",
+    "Plena Saúde - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\RELATORIO_QUIVER",
 
 
     
     
 
     
-    #"GNDI - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_CADASTRO" ,
-    #"GNDI - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRO" ,
-    #"GNDI - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRALIDADE",
-    #"GNDI - Bi Zetta": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\RELATORIO",
+    #"GNDI - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_CADASTRO" ,
+    #"GNDI - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRO" ,
+    #"GNDI - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRALIDADE",
+    #"GNDI - Bi Zetta": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\RELATORIO",
 
 }    
 
 caminhos_1 = {
-    "Planilha de Reavaliação": r"C:\JORGE_V1\Jorge\PLANILHA_REAVALIACAO_03",
+    "Planilha de Reavaliação": rf"C:\JORGE_V1\Jorge\PLANILHA_REAVALIACAO_03",
 
-    "Bradesco - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\BASE_CADASTRO",
-    "Bradesco - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\BASE_SINISTRO",
-    "Bradesco - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\BASE_SINISTRALIDADE",
+    "Bradesco - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\BASE_CADASTRO",
+    "Bradesco - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\BASE_SINISTRO",
+    "Bradesco - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\BASE_SINISTRALIDADE",
    
-    "Seguros Unimed - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\BASE_CADASTRO" ,
-    "Seguros Unimed - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\BASE_SINISTRO" ,
-    "Seguros Unimed - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\BASE_SINISTRALIDADE",
+    "Seguros Unimed - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\BASE_CADASTRO" ,
+    "Seguros Unimed - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\BASE_SINISTRO" ,
+    "Seguros Unimed - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\BASE_SINISTRALIDADE",
     
-    "Bradesco (manual) - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\BASE_SINISTRALIDADE",
+    "Bradesco (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\BASE_SINISTRALIDADE",
     
-    "SulAmérica - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\BASE_CADASTRO" ,
-    "SulAmérica - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\BASE_SINISTRO" ,
-    "SulAmérica - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\BASE_SINISTRALIDADE",
+    "SulAmérica - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_CADASTRO" ,
+    "SulAmérica - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_SINISTRO" ,
+    "SulAmérica - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_SINISTRALIDADE",
     
-    "Unimed Nacional - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\BASE_CADASTRO" ,
-    "Unimed Nacional - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\BASE_SINISTRO" ,
-    "Unimed Nacional - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\BASE_SINISTRALIDADE",
+    "Unimed Nacional - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\BASE_CADASTRO" ,
+    "Unimed Nacional - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\BASE_SINISTRO" ,
+    "Unimed Nacional - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\BASE_SINISTRALIDADE",
     
-    "Porto Seguro - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\BASE_CADASTRO" ,
-    "Porto Seguro - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\BASE_SINISTRO" ,
-    "Porto Seguro - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\BASE_SINISTRALIDADE",
+    "Porto Seguro - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\BASE_CADASTRO" ,
+    "Porto Seguro - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\BASE_SINISTRO" ,
+    "Porto Seguro - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\BASE_SINISTRALIDADE",
     
-    "Omint - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\BASE_CADASTRO" ,
-    "Omint - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\BASE_SINISTRO" ,
-    "Omint - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\BASE_SINISTRALIDADE",
-    
-
-    "Omint (manual) - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\BASE_SINISTRALIDADE",
-    
-    "Hapvida - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\BASE_CADASTRO" ,
-    "Hapvida - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\BASE_SINISTRO" ,
-    "Hapvida - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\BASE_SINISTRALIDADE",
-
-
-    "Plena Saúde - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\BASE_CADASTRO" ,
-    "Plena Saúde - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\BASE_SINISTRO" ,
-    "Plena Saúde - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\BASE_SINISTRALIDADE",   
+    "Omint - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\BASE_CADASTRO" ,
+    "Omint - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\BASE_SINISTRO" ,
+    "Omint - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\BASE_SINISTRALIDADE",
     
 
+    "Omint (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\BASE_SINISTRALIDADE",
     
-    #"GNDI - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_CADASTRO" ,
-    #"GNDI - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRO" ,
-    #"GNDI - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRALIDADE",
-    #"GNDI - Bi Zetta": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\RELATORIO",
+    #"Hapvida - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_CADASTRO" ,
+    "Hapvida - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_SINISTRO" ,
+    "Hapvida - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_SINISTRALIDADE",
+
+
+    "Plena Saúde - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\BASE_CADASTRO" ,
+    "Plena Saúde - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\BASE_SINISTRO" ,
+    "Plena Saúde - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\BASE_SINISTRALIDADE",   
+    
+
+    
+    #"GNDI - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_CADASTRO" ,
+    #"GNDI - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRO" ,
+    #"GNDI - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRALIDADE",
+    #"GNDI - Bi Zetta": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\RELATORIO",
 }
 
 caminhos_2 = {
    
 
-    "Amil": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO",
+    "Amil": rf"C:\JORGE_V1\Jorge\03_15_AMIL\{mes_ano}\RELATORIO",
 
     
-    "Bradesco": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO",   
+    "Bradesco": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\RELATORIO",   
 
     
-    "Seguros Unimed": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO", 
+    "Seguros Unimed": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO", 
     
     
-    "Bradesco (Manual) - Produção Manual": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO",
+    "Bradesco (Manual) - Produção Manual": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO",
     
-    "SulAmérica": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO", 
+    "SulAmérica": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\RELATORIO", 
     
-    "Unimed Nacional": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO",
+    "Unimed Nacional": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\RELATORIO",
     
-    "Porto Seguro": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO",
+    "Porto Seguro": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\RELATORIO",
     
-    "Omint": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO",
+    "Omint": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO",
 
-    "Omint (manual)": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO",
+    "Omint (manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO",
 
-    "Hapvida": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO",
+    "Hapvida": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\RELATORIO",
 
-    "Plena Saúde": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO",     
+    "Plena Saúde": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\RELATORIO",     
     
 
     
-    #"GNDI - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_CADASTRO" ,
-    #"GNDI - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRO" ,
-    #"GNDI - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRALIDADE",
-    #"GNDI - Bi Zetta": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\RELATORIO",
+    #"GNDI - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_CADASTRO" ,
+    #"GNDI - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRO" ,
+    #"GNDI - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRALIDADE",
+    #"GNDI - Bi Zetta": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\RELATORIO",
 }
 caminhos_3 = {    
 
-    "Amil": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_ENVIADOS",
+    "Amil": rf"C:\JORGE_V1\Jorge\03_15_AMIL\{mes_ano}\RELATORIO_ENVIADOS",
 
-    "Bradesco": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_ENVIADOS",
+    "Bradesco": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\RELATORIO_ENVIADOS",
 
-    "Seguros Unimed": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_ENVIADOS", 
+    "Seguros Unimed": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO_ENVIADOS", 
     
-    "Bradesco (Manual)": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO_ENVIADOS",
+    "Bradesco (Manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO_ENVIADOS",
     
-    "SulAmérica": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO_ENVIADOS", 
+    "SulAmérica": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\RELATORIO_ENVIADOS", 
     
-    "Unimed Nacional": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO_ENVIADOS",
+    "Unimed Nacional": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\RELATORIO_ENVIADOS",
     
-    "Porto Seguro": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO_ENVIADOS",
+    "Porto Seguro": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\RELATORIO_ENVIADOS",
     
-    "Omint": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO_ENVIADOS",
+    "Omint": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO_ENVIADOS",
 
-    "Omint (manual)": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO_ENVIADOS",
+    "Omint (manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO_ENVIADOS",
     
-    "Hapvida": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO_ENVIADOS",
+    "Hapvida": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\RELATORIO_ENVIADOS",
 
-    "Plena Saúde": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO_ENVIADOS",      
+    "Plena Saúde": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\RELATORIO_ENVIADOS",      
     
 
     
-    #"GNDI - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_CADASTRO" ,
-    #"GNDI - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRO" ,
-    #"GNDI - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRALIDADE",
-    #"GNDI - Bi Zetta": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\RELATORIO",
+    #"GNDI - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_CADASTRO" ,
+    #"GNDI - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRO" ,
+    #"GNDI - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRALIDADE",
+    #"GNDI - Bi Zetta": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\RELATORIO",
 }
 caminhos_4 = {
    
-    "Amil": r"C:\JORGE_V1\Jorge\03_15_AMIL\06.2025\RELATORIO_QUIVER",
+    "Amil": rf"C:\JORGE_V1\Jorge\03_15_AMIL\{mes_ano}\RELATORIO_QUIVER",
 
-    "Bradesco": r"C:\JORGE_V1\Jorge\2_Bradesco\06.2025\RELATORIO_QUIVER",
+    "Bradesco": rf"C:\JORGE_V1\Jorge\2_Bradesco\{mes_ano}\RELATORIO_QUIVER",
 
-    "Seguros Unimed": r"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\06.2025\RELATORIO_QUIVER", 
+    "Seguros Unimed": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO_QUIVER", 
     
-    "Bradesco (Manual)": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\06.2025\RELATORIO_QUIVER",
+    "Bradesco (Manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO_QUIVER",
     
-    "SulAmérica - Quiver": r"C:\JORGE_V1\Jorge\9_SULAMERICA\06.2025\RELATORIO_QUIVER", 
+    "SulAmérica - Quiver": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\RELATORIO_QUIVER", 
     
-    "Unimed Nacional": r"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\06.2025\RELATORIO_QUIVER",
+    "Unimed Nacional": rf"C:\JORGE_V1\Jorge\11_UNIMED_NACIONAL_CNU\{mes_ano}\RELATORIO_QUIVER",
     
-    "Porto Seguro": r"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\06.2025\RELATORIO_QUIVER",
+    "Porto Seguro": rf"C:\JORGE_V1\Jorge\6_PORTO_SEGURO\{mes_ano}\RELATORIO_QUIVER",
     
-    "Omint": r"C:\JORGE_V1\Jorge\4_OMINT\06.2025\RELATORIO_QUIVER",
+    "Omint": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO_QUIVER",
 
-    "Omint (manual) ": r"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\06.2025\RELATORIO_QUIVER",
+    "Omint (manual) ": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO_QUIVER",
 
-    "Hapvida": r"C:\JORGE_V1\Jorge\3_Hapvida\06.2025\RELATORIO_QUIVER",
+    "Hapvida": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\RELATORIO_QUIVER",
 
-    "Plena Saúde": r"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\06.2025\RELATORIO_QUIVER",  
-
-    
-    
+    "Plena Saúde": rf"C:\JORGE_V1\Jorge\5_PLENA_SAUDE\{mes_ano}\RELATORIO_QUIVER",  
 
     
-    #"GNDI - Arquivo de Cadastro/Faturamento": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_CADASTRO" ,
-    #"GNDI - Base Aberta de Sinistro": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRO" ,
-    #"GNDI - Relatório Gerencial de Sinistralidade": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\BASE_BI\BASE_SINISTRALIDADE",
-    #"GNDI - Bi Zetta": r"C:\JORGE_V1\Jorge\10_GNDI\06.2025\RELATORIO",
+    
+
+    
+    #"GNDI - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_CADASTRO" ,
+    #"GNDI - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRO" ,
+    #"GNDI - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\BASE_BI\BASE_SINISTRALIDADE",
+    #"GNDI - Bi Zetta": rf"C:\JORGE_V1\Jorge\10_GNDI\{mes_ano}\RELATORIO",
 }
 
 

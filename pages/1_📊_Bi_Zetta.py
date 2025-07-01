@@ -14,10 +14,7 @@ from dateutil.relativedelta import relativedelta
 import base64
 
 # Chama a função de autenticação
-name, auth_status, username = tela_login()
-if not auth_status:
-    st.warning("⚠️ Você precisa estar autenticado para acessar este painel.")
-    st.stop()
+
 
 
 st.title("📊 Visão Geral dos Relatórios no BI")
@@ -188,7 +185,7 @@ st.markdown("### Progresso por Atividade")
 etapas_unicos = df["Etapa"].unique()
 
 blocos_html_lista = []
-
+status=""
 for etapa in etapas_unicos:
 
     prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
@@ -213,7 +210,7 @@ for etapa in etapas_unicos:
     competencia = identificar_competencia(etapa)
     competencia_formatada = competencia.replace("/", "-") if competencia != "N/A" else competencia
 
-    status=""
+
     if progresso == 100:
         status = "Concluído"
     elif prazo != "N/A":
