@@ -179,7 +179,7 @@ status=""
 for etapa in etapas_unicos:
 
     prazo = prazos_etapas.get(etapa, {}).get("prazo", "N/A")
-    proximo_do_prazo = esta_perto_do_prazo(prazo) and status != "Concluído"
+    
 
     if proximo_do_prazo:
         background_color = "#fff9c4"  # amarelo claro
@@ -211,6 +211,7 @@ for etapa in etapas_unicos:
                 status = "Pendente"
     else:
         status = "Pendente"
+    proximo_do_prazo = esta_perto_do_prazo(prazo) and status != "Concluído"
 
     if LOCAL_ENV:
         caminhos_4_pasta = [caminhos_4.get(etapa, "") for et in df_etapa["Etapa"]]
@@ -224,6 +225,7 @@ for etapa in etapas_unicos:
     else:
         valores = df_etapa["Últ. Atualização"].dropna().tolist()
         ultima_atualizacao = valores[0] if valores else "Indisponível"
+    
 
     #atraso_html = "<span style='color: red; font-weight: bold;'> ⚠️ Atrasado </span>" if atrasado else ""
     
