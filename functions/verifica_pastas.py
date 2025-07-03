@@ -33,7 +33,7 @@ def gerar_relatorio_pastas(caminhos):
  
     return df
 
-mes_ano = "06.2025"
+mes_ano = "07.2025"
 caminhos = {
     "Planilha de Reavaliação": rf"C:\JORGE_V1\Jorge\PLANILHA_REAVALIACAO_03",
 
@@ -57,10 +57,10 @@ caminhos = {
     "Seguros Unimed - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO_ENVIADOS",
     "Seguros Unimed - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO_QUIVER",
 
-    "Bradesco (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\BASE_SINISTRALIDADE",
-    "Bradesco (manual) - Produção do Relatório": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO",
-    "Bradesco (Manual) - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO_ENVIADOS",
-    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO_QUIVER",
+    "Bradesco (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\BRADESCO\{mes_ano}\BASE_SINISTRALIDADE",
+    "Bradesco (manual) - Produção do Relatório": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\BRADESCO\{mes_ano}\RELATORIO",
+    "Bradesco (Manual) - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\BRADESCO\{mes_ano}\RELATORIO_ENVIADOS",
+    "Bradesco (Manual) - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\BRADESCO\{mes_ano}\RELATORIO_QUIVER",
 
     "SulAmérica - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_CADASTRO" ,
     "SulAmérica - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_SINISTRO" ,
@@ -92,10 +92,10 @@ caminhos = {
     "Omint - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO_ENVIADOS",
     "Omint - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO_QUIVER",
 
-    "Omint (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\BASE_SINISTRALIDADE",
-    "Omint (manual) - Produção do Relatório": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO",
-    "Omint (manual) - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO_ENVIADOS",
-    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO_QUIVER",
+    "Omint (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\OMINT\{mes_ano}\BASE_SINISTRALIDADE",
+    "Omint (manual) - Produção do Relatório": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\OMINT\{mes_ano}\RELATORIO",
+    "Omint (manual) - Envio Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\OMINT\{mes_ano}\RELATORIO_ENVIADOS",
+    "Omint (manual) - Quiver - Anexar Relatório de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\OMINT\{mes_ano}\RELATORIO_QUIVER",
    
     #"Hapvida - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_CADASTRO" ,
     "Hapvida - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_SINISTRO" ,
@@ -135,7 +135,7 @@ caminhos_1 = {
     "Seguros Unimed - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\BASE_SINISTRO" ,
     "Seguros Unimed - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\BASE_SINISTRALIDADE",
     
-    "Bradesco (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\BASE_SINISTRALIDADE",
+    "Bradesco (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\BRADESCO\{mes_ano}\BASE_SINISTRALIDADE",
     
     "SulAmérica - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_CADASTRO" ,
     "SulAmérica - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\BASE_SINISTRO" ,
@@ -154,7 +154,7 @@ caminhos_1 = {
     "Omint - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\BASE_SINISTRALIDADE",
     
 
-    "Omint (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\BASE_SINISTRALIDADE",
+    "Omint (manual) - Relatório Gerencial de Sinistralidade": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\OMINT\{mes_ano}\BASE_SINISTRALIDADE",
     
     #"Hapvida - Arquivo de Cadastro/Faturamento": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_CADASTRO" ,
     "Hapvida - Base Aberta de Sinistro": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\BASE_SINISTRO" ,
@@ -185,7 +185,7 @@ caminhos_2 = {
     "Seguros Unimed": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO", 
     
     
-    "Bradesco (Manual) - Produção Manual": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO",
+    "Bradesco (Manual) - Produção Manual": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\BRADESCO\{mes_ano}\RELATORIO",
     
     "SulAmérica": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\RELATORIO", 
     
@@ -195,7 +195,7 @@ caminhos_2 = {
     
     "Omint": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO",
 
-    "Omint (manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO",
+    "Omint (manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\OMINT\{mes_ano}\RELATORIO",
 
     "Hapvida": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\RELATORIO",
 
@@ -216,7 +216,7 @@ caminhos_3 = {
 
     "Seguros Unimed": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO_ENVIADOS", 
     
-    "Bradesco (Manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO_ENVIADOS",
+    "Bradesco (Manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\BRADESCO\{mes_ano}\RELATORIO_ENVIADOS",
     
     "SulAmérica": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\RELATORIO_ENVIADOS", 
     
@@ -226,7 +226,7 @@ caminhos_3 = {
     
     "Omint": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO_ENVIADOS",
 
-    "Omint (manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO_ENVIADOS",
+    "Omint (manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\OMINT\{mes_ano}\RELATORIO_ENVIADOS",
     
     "Hapvida": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\RELATORIO_ENVIADOS",
 
@@ -247,7 +247,7 @@ caminhos_4 = {
 
     "Seguros Unimed": rf"C:\JORGE_V1\Jorge\7_SEGUROS_UNIMED\{mes_ano}\RELATORIO_QUIVER", 
     
-    "Bradesco (Manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\BRADESCO\{mes_ano}\RELATORIO_QUIVER",
+    "Bradesco (Manual)": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\BRADESCO\{mes_ano}\RELATORIO_QUIVER",
     
     "SulAmérica - Quiver": rf"C:\JORGE_V1\Jorge\9_SULAMERICA\{mes_ano}\RELATORIO_QUIVER", 
     
@@ -257,7 +257,7 @@ caminhos_4 = {
     
     "Omint": rf"C:\JORGE_V1\Jorge\4_OMINT\{mes_ano}\RELATORIO_QUIVER",
 
-    "Omint (manual) ": rf"C:\JORGE_V1\Jorge\16_RELATORIO MANUAL\OMINT\{mes_ano}\RELATORIO_QUIVER",
+    "Omint (manual) ": rf"C:\JORGE_V1\Jorge\16_RELATORIO_MANUAL\OMINT\{mes_ano}\RELATORIO_QUIVER",
 
     "Hapvida": rf"C:\JORGE_V1\Jorge\3_Hapvida\{mes_ano}\RELATORIO_QUIVER",
 

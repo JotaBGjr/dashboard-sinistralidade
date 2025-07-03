@@ -94,7 +94,7 @@ prazos_etapas = {
 }
 
 operadoras_competencia = {
-    "Reavaliação": 0,
+    "Reavaliação": -0,
     "Amil": -2,
     "Bradesco": -1,
     "Seguros Unimed": -1,
